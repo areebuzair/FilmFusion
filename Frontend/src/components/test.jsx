@@ -7,7 +7,7 @@ export default function Test() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await axios.get("http://localhost:4500/film/protected");
+            const response = await axios.get("http://localhost:4500/film/genres");
             console.log("Message", response.data);
         }
         fetchData()

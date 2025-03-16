@@ -1,152 +1,152 @@
--- Create the database with UTF-8 encoding
-CREATE DATABASE IF NOT EXISTS movies_db
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
+-- MySQL Workbench Forward Engineering
 
--- Switch to the new database
-USE movies_db;
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(255) DEFAULT NULL,
-  `user_password` varchar(255) DEFAULT NULL,
-  `user_email` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema movies_db
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema movies_db
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `movies_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+USE `movies_db` ;
+
+-- -----------------------------------------------------
+-- Table `movies_db`.`actor_movie_log`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `movies_db`.`actor_movie_log` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `movie_id` INT NULL DEFAULT NULL,
+  `actor_id` INT NULL DEFAULT NULL,
+  `assigned_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
 
--- ======================
--- Table Definitions
--- ======================
+-- -----------------------------------------------------
+-- Table `movies_db`.`actors`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `movies_db`.`actors` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(100) NOT NULL,
+  `last_name` VARCHAR(100) NOT NULL,
+  `dob` DATE NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
--- Movies Table
-CREATE TABLE IF NOT EXISTS movies (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    release_year INT NOT NULL,
-    director VARCHAR(255) NOT NULL,
-    rating DECIMAL(3,1) DEFAULT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
 
--- Genres Table
-CREATE TABLE IF NOT EXISTS genres (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL UNIQUE
-) ENGINE=InnoDB;
+-- -----------------------------------------------------
+-- Table `movies_db`.`genres`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `movies_db`.`genres` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name` (`name` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
--- Movie_Genres Join Table (many-to-many relationship between movies and genres)
-CREATE TABLE IF NOT EXISTS movie_genres (
-    movie_id INT NOT NULL,
-    genre_id INT NOT NULL,
-    PRIMARY KEY (movie_id, genre_id),
-    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-    FOREIGN KEY (genre_id) REFERENCES genres(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
 
--- Actors Table
-CREATE TABLE IF NOT EXISTS actors (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(100) NOT NULL,
-    last_name VARCHAR(100) NOT NULL,
-    dob DATE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+-- -----------------------------------------------------
+-- Table `movies_db`.`movies`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `movies_db`.`movies` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NOT NULL,
+  `release_year` INT NOT NULL,
+  `director` VARCHAR(255) NOT NULL,
+  `rating` DECIMAL(3,1) NULL DEFAULT NULL,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `poster_url` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 13
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
--- Movie_Actors Join Table (many-to-many relationship between movies and actors)
-CREATE TABLE IF NOT EXISTS movie_actors (
-    movie_id INT NOT NULL,
-    actor_id INT NOT NULL,
-    role VARCHAR(255),
-    PRIMARY KEY (movie_id, actor_id),
-    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-    FOREIGN KEY (actor_id) REFERENCES actors(id) ON DELETE CASCADE
-) ENGINE=InnoDB;
 
--- Actor Movie Log Table (used for trigger logging)
-CREATE TABLE IF NOT EXISTS actor_movie_log (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    movie_id INT,
-    actor_id INT,
-    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+-- -----------------------------------------------------
+-- Table `movies_db`.`movie_actors`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `movies_db`.`movie_actors` (
+  `movie_id` INT NOT NULL,
+  `actor_id` INT NOT NULL,
+  `role` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`movie_id`, `actor_id`),
+  INDEX `actor_id` (`actor_id` ASC) VISIBLE,
+  CONSTRAINT `movie_actors_ibfk_1`
+    FOREIGN KEY (`movie_id`)
+    REFERENCES `movies_db`.`movies` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT `movie_actors_ibfk_2`
+    FOREIGN KEY (`actor_id`)
+    REFERENCES `movies_db`.`actors` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
--- ========================================
--- Triggers
--- ========================================
 
--- Trigger: Before inserting a movie, validate that the rating (if provided) is between 0 and 10.
-DELIMITER //
-CREATE TRIGGER before_insert_movie
-BEFORE INSERT ON movies
-FOR EACH ROW
-BEGIN
-    IF NEW.rating IS NOT NULL AND (NEW.rating < 0 OR NEW.rating > 10) THEN
-        SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'Invalid rating: Must be between 0 and 10';
-    END IF;
-END;
-//
-DELIMITER ;
+-- -----------------------------------------------------
+-- Table `movies_db`.`movie_genres`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `movies_db`.`movie_genres` (
+  `movie_id` INT NOT NULL,
+  `genre_id` INT NOT NULL,
+  PRIMARY KEY (`movie_id`, `genre_id`),
+  INDEX `genre_id` (`genre_id` ASC) VISIBLE,
+  CONSTRAINT `movie_genres_ibfk_1`
+    FOREIGN KEY (`movie_id`)
+    REFERENCES `movies_db`.`movies` (`id`)
+    ON DELETE CASCADE,
+  CONSTRAINT `movie_genres_ibfk_2`
+    FOREIGN KEY (`genre_id`)
+    REFERENCES `movies_db`.`genres` (`id`)
+    ON DELETE CASCADE)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
--- Trigger: After inserting a movie, automatically assign the default genre "Uncategorized"
--- if no other genre is specified. (This trigger always assigns "Uncategorized".)
-DELIMITER //
-CREATE TRIGGER after_insert_movie
-AFTER INSERT ON movies
-FOR EACH ROW
-BEGIN
-    DECLARE genre_id INT;
-    -- Check if 'Uncategorized' exists; if not, insert it.
-    SELECT id INTO genre_id FROM genres WHERE name = 'Uncategorized' LIMIT 1;
-    IF genre_id IS NULL THEN
-        INSERT INTO genres (name) VALUES ('Uncategorized');
-        SET genre_id = LAST_INSERT_ID();
-    END IF;
-    -- Link the new movie with the 'Uncategorized' genre.
-    INSERT INTO movie_genres (movie_id, genre_id) VALUES (NEW.id, genre_id);
-END;
-//
-DELIMITER ;
 
--- Trigger: After inserting into movie_actors, log the association in actor_movie_log.
-DELIMITER //
-CREATE TRIGGER after_actor_assigned
-AFTER INSERT ON movie_actors
-FOR EACH ROW
-BEGIN
-    INSERT INTO actor_movie_log (movie_id, actor_id)
-    VALUES (NEW.movie_id, NEW.actor_id);
-END;
-//
-DELIMITER ;
+-- -----------------------------------------------------
+-- Table `movies_db`.`users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `movies_db`.`users` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `user_name` VARCHAR(255) NULL DEFAULT NULL,
+  `user_password` VARCHAR(255) NULL DEFAULT NULL,
+  `user_email` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`user_id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 32
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
--- ========================================
--- Stored Function
--- ========================================
+USE `movies_db` ;
 
--- Function: Returns the average rating for all movies directed by a given director.
-DELIMITER //
-CREATE FUNCTION get_avg_rating(director_name VARCHAR(255)) RETURNS DECIMAL(3,1)
-DETERMINISTIC
-BEGIN
-    DECLARE avg_rating DECIMAL(3,1);
-    SELECT AVG(rating) INTO avg_rating FROM movies WHERE director = director_name;
-    RETURN avg_rating;
-END;
-//
-DELIMITER ;
+-- -----------------------------------------------------
+-- procedure add_movie
+-- -----------------------------------------------------
 
--- ========================================
--- Stored Procedures
--- ========================================
-
--- Procedure: Add a new movie and associate it with a comma-separated list of genres.
--- The procedure expects p_genres_list as a comma-separated string (e.g., 'Action, Sci-Fi').
-DELIMITER //
-CREATE PROCEDURE add_movie(
+DELIMITER $$
+USE `movies_db`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_movie`(
     IN p_title VARCHAR(255),
     IN p_release_year INT,
     IN p_director VARCHAR(255),
@@ -187,27 +187,50 @@ BEGIN
             INSERT INTO movie_genres (movie_id, genre_id) VALUES (movie_id, genre_id);
         END IF;
     END WHILE;
-END;
-//
+END$$
+
 DELIMITER ;
 
--- Procedure: Retrieve movies for a specific actor given the actor's full name.
-DELIMITER //
-CREATE PROCEDURE get_movies_by_actor(IN p_actor_name VARCHAR(255))
+-- -----------------------------------------------------
+-- function get_avg_rating
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `movies_db`$$
+CREATE DEFINER=`root`@`localhost` FUNCTION `get_avg_rating`(director_name VARCHAR(255)) RETURNS decimal(3,1)
+    DETERMINISTIC
+BEGIN
+    DECLARE avg_rating DECIMAL(3,1);
+    SELECT AVG(rating) INTO avg_rating FROM movies WHERE director = director_name;
+    RETURN avg_rating;
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure get_movies_by_actor
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `movies_db`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_movies_by_actor`(IN p_actor_name VARCHAR(255))
 BEGIN
     SELECT m.id, m.title, m.release_year, m.director, m.rating, ma.role
     FROM movies m
     JOIN movie_actors ma ON m.id = ma.movie_id
     JOIN actors a ON ma.actor_id = a.id
     WHERE CONCAT(a.first_name, ' ', a.last_name) = p_actor_name;
-END;
-//
+END$$
+
 DELIMITER ;
 
--- Procedure: Increase the rating of all movies by a specified director by a given boost amount.
--- This procedure uses a cursor to iterate over the movies.
-DELIMITER //
-CREATE PROCEDURE update_movie_ratings(IN p_director_name VARCHAR(255), IN p_rating_boost DECIMAL(2,1))
+-- -----------------------------------------------------
+-- procedure update_movie_ratings
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `movies_db`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_movie_ratings`(IN p_director_name VARCHAR(255), IN p_rating_boost DECIMAL(2,1))
 BEGIN
     DECLARE done INT DEFAULT FALSE;
     DECLARE cur_movie_id INT;
@@ -223,27 +246,57 @@ BEGIN
         UPDATE movies SET rating = rating + p_rating_boost WHERE id = cur_movie_id;
     END LOOP;
     CLOSE cur;
-END;
-//
+END$$
+
+DELIMITER ;
+USE `movies_db`;
+
+DELIMITER $$
+USE `movies_db`$$
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `movies_db`.`after_insert_movie`
+AFTER INSERT ON `movies_db`.`movies`
+FOR EACH ROW
+BEGIN
+    DECLARE genre_id INT;
+    -- Check if 'Uncategorized' exists; if not, insert it.
+    SELECT id INTO genre_id FROM genres WHERE name = 'Uncategorized' LIMIT 1;
+    IF genre_id IS NULL THEN
+        INSERT INTO genres (name) VALUES ('Uncategorized');
+        SET genre_id = LAST_INSERT_ID();
+    END IF;
+    -- Link the new movie with the 'Uncategorized' genre.
+    INSERT INTO movie_genres (movie_id, genre_id) VALUES (NEW.id, genre_id);
+END$$
+
+USE `movies_db`$$
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `movies_db`.`before_insert_movie`
+BEFORE INSERT ON `movies_db`.`movies`
+FOR EACH ROW
+BEGIN
+    IF NEW.rating IS NOT NULL AND (NEW.rating < 0 OR NEW.rating > 10) THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Invalid rating: Must be between 0 and 10';
+    END IF;
+END$$
+
+USE `movies_db`$$
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `movies_db`.`after_actor_assigned`
+AFTER INSERT ON `movies_db`.`movie_actors`
+FOR EACH ROW
+BEGIN
+    INSERT INTO actor_movie_log (movie_id, actor_id)
+    VALUES (NEW.movie_id, NEW.actor_id);
+END$$
+
+
 DELIMITER ;
 
--- ========================================
--- Scheduled Event
--- ========================================
-
--- Enable the event scheduler (if not already enabled)
-SET GLOBAL event_scheduler = ON;
-
--- Event: Delete movies released before 1980 every day.
-DELIMITER //
-CREATE EVENT delete_old_movies
-ON SCHEDULE EVERY 1 DAY
-DO
-    DELETE FROM movies WHERE release_year < 1980;
-//
-DELIMITER ;
-
--- ========================================
--- End of SQL File
--- ========================================
-
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

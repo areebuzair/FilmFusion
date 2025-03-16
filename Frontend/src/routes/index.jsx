@@ -5,6 +5,11 @@ import Login from "../pages/Login";
 import { Register } from "../pages/SignUp/register";
 import EmailVerifier from "../pages/EmailVerifier/EmailVerifier";
 import Logout from "../pages/Logout";
+import Header from '../components/Header';
+import Dashboard from '../components/Dashboard';
+import MovieList from '../components/MovieList';
+import Home from "../components/Home";
+
 
 import Test from "../components/test";
 
@@ -31,7 +36,7 @@ const Routes = () => {
       children: [
         {
           path: "",
-          element: <div>User Home Page</div>,
+          element: <Home />,
         },
         {
           path: "/profile",
@@ -41,6 +46,10 @@ const Routes = () => {
           path: "/logout",
           element: <Logout/>,
         },
+        {
+          path: "/dashboard",
+          element: <Dashboard />
+        },
       ],
     },
   ];
@@ -49,7 +58,7 @@ const Routes = () => {
   const routesForNotAuthenticatedOnly = [
     {
       path: "/",
-      element: <div>Home Page</div>,
+      element: <Home />,
     },
     {
       path: "/login",

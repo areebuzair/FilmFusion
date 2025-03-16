@@ -19,6 +19,9 @@ app.use("/user/", userRouter);
 const filmRouter = require('./routes/film')
 app.use("/film/", filmRouter);
 
+const imageRouter = require('./routes/images')
+app.use("/images/", imageRouter);
+
 // Set app port
 app.listen(PORT);
 
