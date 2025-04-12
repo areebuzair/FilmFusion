@@ -50,6 +50,8 @@ const Routes = () => {
           path: "/dashboard",
           element: <Dashboard />
         },
+
+      
       ],
     },
   ];

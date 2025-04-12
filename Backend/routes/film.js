@@ -115,4 +115,99 @@ router.post('/actors', authenticateToken, (req, res) => {
         });
 });
 
+
+// =========================
+// Rating & Review Endpoints
+// =========================
+
+// Add a rating and review for a movie (Requires authentication)
+router.post('/movies/:id/rate-review', authenticateToken, (req, res) => {
+    const movieId = req.params.id;
+    const { rating, review } = req.body;
+    const userId = req.params.user_id;
+
+    if (!rating || rating < 1 || rating > 5) {
+        return res.status(400).json({ message: 'Rating must be between 1 and 5' });
+    }
+
+    connection.query(
+        "INSERT INTO movie_reviews (movie_id, user_id, rating, review) VALUES (?, ?, ?, ?)",
+        [movieId, userId, rating, review],
+        (err, result) => {
+            if (err) return res.status(500).json({ message: 'Error adding rating and review', error: err });
+            res.status(201).json({ message: 'Rating and review added successfully' });
+        }
+    );
+});
+
+// Get all ratings and reviews for a movie
+router.get('/movies/:id/rate-review', (req, res) => {
+    const movieId = req.params.id;
+
+    connection.query(
+        "SELECT r.rating, r.review, u.username FROM movie_reviews r JOIN users u ON r.user_id = u.id WHERE r.movie_id = ?",
+        [movieId],
+        (err, results) => {
+            if (err) return res.status(500).json({ message: 'Error fetching ratings and reviews', error: err });
+            res.json(results);
+        }
+    );
+});
+// =========================
+// Watchlist Endpoints
+// =========================
+
+// Add a movie to the user's watchlist (Requires authentication)
+router.post('/watchlist', authenticateToken, (req, res) => {
+    const { user_id, movie_id } = req.body;
+
+    if (!user_id || !movie_id) {
+        return res.status(400).json({ message: 'User ID and Movie ID are required' });
+    }
+
+    connection.query(
+        "INSERT INTO watchlist (user_id, movie_id, watched) VALUES (?, ?, False)",
+        [user_id, movie_id],
+        (err, result) => {
+            if (err) return res.status(500).json({ message: 'Error adding movie to watchlist', error: err });
+            res.status(201).json({ message: 'Movie added to watchlist successfully' });
+        }
+    );
+});
+
+// Get the user's watchlist
+router.get('/watchlist/:user_id', authenticateToken, (req, res) => {
+    const userId = req.params.user_id;
+
+    connection.query(
+        "SELECT w.movie_id, m.title, m.release_year, m.director, w.watched FROM watchlist w JOIN movies m ON w.movie_id = m.id WHERE w.user_id = ?",
+        [userId],
+        (err, results) => {
+            if (err) return res.status(500).json({ message: 'Error fetching watchlist', error: err });
+            res.json(results);
+        }
+    );
+});
+
+// Update the watched status of a movie in the user's watchlist (Requires authentication)
+router.put('/watchlist/:user_id/:movie_id', authenticateToken, (req, res) => {
+    const { user_id, movie_id } = req.params;
+    const { watched } = req.body;
+
+    if (watched === undefined) {
+        return res.status(400).json({ message: 'Watched status is required' });
+    }
+
+    connection.query(
+        "UPDATE watchlist SET watched = ? WHERE user_id = ? AND movie_id = ?",
+        [watched, user_id, movie_id],
+        (err, result) => {
+            if (err) return res.status(500).json({ message: 'Error updating watchlist', error: err });
+            res.json({ message: 'Watchlist updated successfully' });
+        }
+    );
+});
+
+
+
 module.exports = router

@@ -339,6 +339,8 @@ COLLATE = utf8mb4_unicode_ci;
 
 -- trigger
 
+DELIMITER $$
+
 CREATE
 DEFINER=`root`@`localhost`
 TRIGGER `movies_db`.`after_insert_review`
@@ -349,4 +351,6 @@ BEGIN
     SET watched = TRUE
     WHERE user_id = NEW.user_id AND movie_id = NEW.movie_id;
 END$$
+
+DELIMITER ;
 
