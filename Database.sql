@@ -239,6 +239,7 @@ BEGIN
 
     OPEN cur;
     read_loop: LOOP
+
         FETCH cur INTO cur_movie_id;
         IF done THEN
             LEAVE read_loop;
@@ -300,3 +301,52 @@ DELIMITER ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Table `movies_db`.`movie_reviews`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `movies_db`.`movie_reviews` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `movie_id` INT NOT NULL,
+    `user_id` INT NOT NULL,
+    `review` VARCHAR(350) NOT NULL,
+    `rating` INT NULL DEFAULT NULL CHECK (`rating` BETWEEN 1 AND 5),
+    `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`movie_id`) REFERENCES `movies_db`.`movies` (`id`) ON DELETE CASCADE,
+    FOREIGN KEY (`user_id`) REFERENCES `movies_db`.`users` (`user_id`) ON DELETE CASCADE
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+---need to think about watchlist table structure
+-- -----------------------------------------------------
+-- Table `movies_db`.`watch_later`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `movies_db`.`watch_later` (
+    `user_id` INT NOT NULL,
+    `movie_id` INT NOT NULL,
+    `watched` BOOLEAN NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (`user_id`, `movie_id`),
+    FOREIGN KEY (`user_id`) REFERENCES `movies_db`.`users` (`user_id`) ON DELETE CASCADE,
+    FOREIGN KEY (`movie_id`) REFERENCES `movies_db`.`movies` (`id`) ON DELETE CASCADE
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- trigger
+
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `movies_db`.`after_insert_review`
+AFTER INSERT ON `movies_db`.`movie_reviews`
+FOR EACH ROW
+BEGIN
+    UPDATE watch_later
+    SET watched = TRUE
+    WHERE user_id = NEW.user_id AND movie_id = NEW.movie_id;
+END$$
+
