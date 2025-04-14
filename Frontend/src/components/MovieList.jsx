@@ -2,9 +2,12 @@
 // src/components/MovieList.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useAuth } from '../provider/authProvider';
+import GiveRating from './GiveRating';
 
 function MovieList() {
   const [movies, setMovies] = useState([]);
+  const {token} = useAuth()
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -26,8 +29,11 @@ function MovieList() {
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>
-              <img src={movie.poster_url} alt={movie.title}/>
-              <strong>{movie.title}</strong> ({movie.release_year}) – Directed by {movie.director} – Rating: {movie.rating || 'N/A'}
+              <img src={movie.poster_url} alt={movie.title}/><br/>
+              <strong>{movie.title}</strong> ({movie.release_year}) <br/>
+              Directed by {movie.director} <br/>
+              Rating: {movie.rating || 'N/A'} <br/>
+              {token && <GiveRating movie_id={movie.id}/>}
             </li>
           ))}
         </ul>

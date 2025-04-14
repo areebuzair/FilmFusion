@@ -3,7 +3,6 @@ import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Login from "../pages/Login";
 import { Register } from "../pages/SignUp/register";
-import EmailVerifier from "../pages/EmailVerifier/EmailVerifier";
 import Logout from "../pages/Logout";
 import Header from '../components/Header';
 import Dashboard from '../components/Dashboard';
@@ -69,10 +68,6 @@ const Routes = () => {
     {
       path: "/signup",
       element: <Register/>,
-    },
-    {
-      path: "/verify-registration",
-      element: <EmailVerifier/>,
     },
   ];
 

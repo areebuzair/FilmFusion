@@ -9,13 +9,6 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 const crypto = require('crypto');
 
-// to store the code in memory
-const verificationCodes = new Map();
-
-const generateSecureVerificationCode = () => {
-    // return 100000;
-    return crypto.randomInt(100000, 999999); //besi secure code hmmm
-};
 
 const JWT_SECRET = process.env.JWT_SECRET; // Load the secret key from .env
 const getJWT = (user) => {
@@ -29,81 +22,11 @@ const getJWT = (user) => {
 const signup = async (req, res) => {
     try {
 
-        const { useremail } = req;
-
-        const verificationCode = generateSecureVerificationCode();
-
-        verificationCodes.set(useremail, { ...req, verificationCode });
-        console.log(useremail, verificationCode);
-
-        setTimeout(() => {
-            verificationCodes.delete(useremail);
-            console.log(`Verification code for ${useremail} expired.`);
-        }, 20 * 60 * 1000); // 20 minutes brother
-
-        // right now its test account kosto
-        // let testAccount = await nodemailer.createTestAccount();
-
-
-        let transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: process.env.EMAIL,
-                pass: process.env.EMAIL_PW,
-            },
-        });
-
-        // Define the email message
-        let message = {
-            from: process.env.EMAIL, // Sender address
-            to: useremail, // Send to the user's email
-            subject: "FilmFusion Email Verification", // Subject line
-            text: `Your verification code is: ${verificationCode}`, // Plain text body
-            html: `<b>Your verification code is: </b><h1>${verificationCode}</h1> <br> Please use this code to verify your account.`, // HTML body
-        };
-
-        // Send the email
-        let info = await transporter.sendMail(message);
-
-        // Respond with a success message
-        return res.status(201).json({
-            msg: `Verification email sent to ${useremail}`,
-            info: info.messageId,
-            // preview: nodemailer.getTestMessageUrl(info)
-            // URL for previewing the email in Ethereal
-        });
-    } catch (error) {
-        console.error("Error sending email:", error);
-        return res.status(500).json({ error: error.message });
-    }
-};
-
-
-const verify = (req, res) => {
-    const { useremail, code } = req.body;
-    console.log(`Asked to verify code ${code} for ${useremail}`)
-    let storedCode;
-    try {
-        storedCode = verificationCodes.get(useremail).verificationCode;
-        console.log(storedCode);
-
-        if (!storedCode) {
-            return res.status(400).json({ msg: "No verification code found for this email or it has expired" });
-        }
-    }
-    catch (e) {
-        console.log(e)
-        return res.status(400).json({ msg: "No verification code found for this email or it has expired" });
-    }
-
-
-    if (parseInt(code) === storedCode) {
-        const user = verificationCodes.get(useremail);
-
+        console.log("Begin sign up processs")
         // Insert the new user into the database
         connection.query(
             "INSERT INTO users (user_name, user_email, user_password) VALUES (?, ?, ?)",
-            [user.username, useremail, user.hash],
+            [req.username, req.useremail, req.hash],
             (insertError, insertResults) => {
                 if (insertError) {
                     console.error("Error inserting user:", insertError);
@@ -111,14 +34,13 @@ const verify = (req, res) => {
                 }
 
                 const user = {
-                    user_email: useremail
+                    user_email: req.useremail
                 }
 
                 // Generate JWT Token
                 const token = getJWT(user)
 
                 console.log("User registered successfully");
-                verificationCodes.delete(useremail);
 
                 res.status(201).json({
                     message: "User registered successfully",
@@ -127,9 +49,10 @@ const verify = (req, res) => {
                 });
             }
         );
-        // return res.status(200).json({ msg: "Email verified successfully" });
-    } else {
-        return res.status(400).json({ msg: "Invalid verification code" });
+
+    } catch (error) {
+        console.error("Error creating user:", error);
+        return res.status(500).json({ error: error.message });
     }
 };
 
@@ -195,7 +118,8 @@ router.post("/signup", async (req, res) => {
             }
 
             if (results.length > 0) {
-                return res.status(400).json({ error: "User already exists. Try Again" });
+                console.log("User email exists already")
+                return res.status(400).json({ error: "User email already exists. Try Again" });
             }
 
             signup({ username, useremail, hash }, res);
@@ -206,6 +130,5 @@ router.post("/signup", async (req, res) => {
     }
 });
 
-router.post("/verify", encoder, verify)
 
 module.exports = router

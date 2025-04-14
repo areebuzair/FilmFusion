@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import "./SignUp_NGO.css";
 import { FaRegUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../provider/authProvider";
+import axios from "axios";
 
 export const Register = () => {
-
+  const { setToken } = useAuth();
   const [username, setUsername] = useState("");
   const [useremail, setUseremail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +14,11 @@ export const Register = () => {
   const [responseMessage, setResponseMessage] = useState("");
 
   const navigate = useNavigate()
+
+  const handleLogin = (_token) => {
+    setToken(_token);
+    navigate("/", { replace: true });
+  };
 
   const HandleRegSubmit = async (e) => {
     e.preventDefault();
@@ -22,30 +29,31 @@ export const Register = () => {
     }
 
     const formData = { username, useremail, password };
+    console.log(formData)
+
 
     try {
-      const response = await fetch('http://localhost:4500/user/signup', {
-        method: 'POST',
+      const response = await axios.post("http://localhost:4500/user/signup", formData, {
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
       });
 
-      console.log(response)
+      console.log("Full response:", response);
+      console.log("Registration successful:", response?.data?.message);
 
-      if (response.ok) {
-        const responseData = await response.json();
-        setResponseMessage('Signup successful: ' + JSON.stringify(responseData));
-        navigate("/verify-registration?email=" + encodeURIComponent(useremail))
+      if (response?.data?.token) {
+        handleLogin(response.data.token);
       } else {
-        setResponseMessage('Signup failed. Status: ' + response.status);
+        console.warn("Token not received in response.");
       }
-    } catch (error) {
-      setResponseMessage('An error occurred: ' + error.message);
+
+    } catch (err) {
+      console.error("Registration failed:", err?.response?.data || err.message || err);
+      console.log(err)
+      setResponseMessage(err?.response?.data?.error)
     }
 
-    console.log(responseMessage)
   }
 
   return (
@@ -56,7 +64,7 @@ export const Register = () => {
         <h1>{responseMessage}</h1>
       }
       <form onSubmit={(e) => HandleRegSubmit(e)}>
-        <h1>NGO Sign Up</h1>
+        <h1>Sign Up</h1>
         <div className="input-box">
           <input type="text" placeholder="Username" required value={username} onInput={(e) => { setUsername(e.target.value) }} />
           <FaRegUser className="icon" />
@@ -78,7 +86,7 @@ export const Register = () => {
         <div className="register-link">
           <p>
             Already have an account?{" "}
-            <button onClick={()=>navigate("/login")} style={{ marginLeft: "5px" }}>
+            <button onClick={() => navigate("/login")} style={{ marginLeft: "5px" }}>
               Login
             </button>
           </p>
