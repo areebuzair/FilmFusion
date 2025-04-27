@@ -25,14 +25,36 @@ const authenticateToken = (req, res, next) => {
 
         console.log("Token verified :", user);
         req.user = user;
-        next();
+        try {
+            connection.query(
+                "SELECT * FROM users WHERE user_email = ?",
+                [user.user_email],
+                async (error, results) => {
+                    if (error) {
+                        console.error("Database query error:", error);
+                        return res.status(500).json({ error: "Internal Server Error" });
+                    }
+
+                    if (results.length === 0) {
+                        return res.status(401).json({ message: "Invalid credentials" });
+                    }
+
+                    const user_id = results[0].user_id;
+                    req.user.user_id = user_id;
+                    next();
+                }
+            );
+        } catch (err) {
+            console.error("Server error:", err);
+            res.status(500).json({ error: "Internal Server Error" });
+        }
     });
 };
 
 // Example of a protected route
 router.get("/protected", authenticateToken, (req, res) => {
     console.log("Protected Route Visited")
-    res.json({ message: "This is a protected route", user: req.user });
+    res.json({ message: "This is a protected route", user: req.user, user_id: req.user.user_id});
 });
 
 // =========================
@@ -130,6 +152,7 @@ router.post('/movies/:id/rate-review', authenticateToken, (req, res) => {
     const userId = req.user.user_id;
 
     console.log("User ID from token:", userId);
+    const userId = req.user.user_id;
 
     if (!rating || rating < 1 || rating > 5) {
         return res.status(400).json({ message: 'Rating must be between 1 and 5' });
@@ -164,7 +187,8 @@ router.get('/movies/:id/rate-review', (req, res) => {
 
 // Add a movie to the user's watchlist (Requires authentication)
 router.post('/watchlist', authenticateToken, (req, res) => {
-    const { user_id, movie_id } = req.body;
+    const { movie_id } = req.body;
+    const {user_id} = req.user;
 
     if (!user_id || !movie_id) {
         return res.status(400).json({ message: 'User ID and Movie ID are required' });
@@ -181,8 +205,8 @@ router.post('/watchlist', authenticateToken, (req, res) => {
 });
 
 // Get the user's watchlist
-router.get('/watchlist/:user_id', authenticateToken, (req, res) => {
-    const userId = req.params.user_id;
+router.get('/watchlist', authenticateToken, (req, res) => {
+    const userId = req.user.user_id;
 
     connection.query(
         "SELECT w.movie_id, m.title, m.release_year, m.director, w.watched FROM watchlist w JOIN movies m ON w.movie_id = m.id WHERE w.user_id = ?",
@@ -195,8 +219,9 @@ router.get('/watchlist/:user_id', authenticateToken, (req, res) => {
 });
 
 // Update the watched status of a movie in the user's watchlist (Requires authentication)
-router.put('/watchlist/:user_id/:movie_id', authenticateToken, (req, res) => {
-    const { user_id, movie_id } = req.params;
+router.put('/watchlist/:movie_id', authenticateToken, (req, res) => {
+    const { movie_id } = req.params;
+    const { user_id } = req.user;
     const { watched } = req.body;
 
     if (watched === undefined) {
