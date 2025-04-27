@@ -42,6 +42,7 @@ const signup = async (req, res) => {
 
                 console.log("User registered successfully");
 
+            
                 res.status(201).json({
                     message: "User registered successfully",
                     token,
@@ -89,6 +90,7 @@ router.post("/login", async (req, res) => {
                         message: "Login successful",
                         token,
                         user: user.user_name
+                        
                     });
                 } else {
                     return res.status(401).json({ message: "Invalid credentials" });

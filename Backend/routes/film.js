@@ -9,6 +9,8 @@ const JWT_SECRET = process.env.JWT_SECRET; // Load the secret key from .env
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
+   // const userId = req.params.user_id;
+
 
     if (!token) {
         console.log("No token")
@@ -21,6 +23,7 @@ const authenticateToken = (req, res, next) => {
             return res.status(403).json({ message: "Invalid token" });
         }
 
+        console.log("Token verified :", user);
         req.user = user;
         next();
     });
@@ -124,7 +127,9 @@ router.post('/actors', authenticateToken, (req, res) => {
 router.post('/movies/:id/rate-review', authenticateToken, (req, res) => {
     const movieId = req.params.id;
     const { rating, review } = req.body;
-    const userId = req.params.user_id;
+    const userId = req.user.user_id;
+
+    console.log("User ID from token:", userId);
 
     if (!rating || rating < 1 || rating > 5) {
         return res.status(400).json({ message: 'Rating must be between 1 and 5' });
