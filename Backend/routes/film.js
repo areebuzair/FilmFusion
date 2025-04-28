@@ -152,7 +152,8 @@ router.post('/movies/:id/rate-review', authenticateToken, (req, res) => {
     const user_Id = req.user.user_id;
 
     console.log("User ID from token:", userId);
-    const userId = req.user.user_id;
+    console.log("Movie ID:", movieId);
+
 
     if (!rating || rating < 1 || rating > 5) {
         return res.status(400).json({ message: 'Rating must be between 1 and 5' });
@@ -160,7 +161,7 @@ router.post('/movies/:id/rate-review', authenticateToken, (req, res) => {
 
     connection.query(
         "INSERT INTO movie_reviews (movie_id, user_id, rating, review) VALUES (?, ?, ?, ?)",
-        [movieId, userId, rating, review],
+        [movieId, userId, rating, review?review:"" ],
         (err, result) => {
             if (err) return res.status(500).json({ message: 'Error adding rating and review', error: err });
             res.status(201).json({ message: 'Rating and review added successfully' });
