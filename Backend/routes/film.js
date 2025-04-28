@@ -149,7 +149,7 @@ router.post('/actors', authenticateToken, (req, res) => {
 router.post('/movies/:id/rate-review', authenticateToken, (req, res) => {
     const movieId = req.params.id;
     const { rating, review } = req.body;
-    const userId = req.user.user_id;
+    const user_Id = req.user.user_id;
 
     console.log("User ID from token:", userId);
     const userId = req.user.user_id;
@@ -178,9 +178,30 @@ router.get('/movies/:id/rate-review', (req, res) => {
         (err, results) => {
             if (err) return res.status(500).json({ message: 'Error fetching ratings and reviews', error: err });
             res.json(results);
+            // Get the logged-in user's rating and review for a movie
+           
         }
     );
 });
+
+router.get('/movies/:id/my-rate-review', authenticateToken, (req, res) => {
+    const movieId = req.params.id;
+    const userId = req.user.user_id;
+
+    connection.query(
+        "SELECT rating, review FROM movie_reviews WHERE movie_id = ? AND user_id = ?",
+        [movieId, userId],
+        (err, results) => {
+            if (err) return res.status(500).json({ message: 'Error fetching user rating and review', error: err });
+            if (results.length === 0) {
+                return res.status(404).json({ message: 'No rating or review found for this movie by the user' });
+            }
+            res.json(results[0]);
+        }
+    );
+});
+
+
 // =========================
 // Watchlist Endpoints
 // =========================
