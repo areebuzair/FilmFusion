@@ -8,15 +8,15 @@ function CollapsibleSection({ title, children }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
-    <div className="collapsible-section">
+    <div className="uh-collapsible-section">
       <div
-        className={`section-header ${isCollapsed ? "collapsed" : ""}`}
+        className={`uh-section-header ${isCollapsed ? "collapsed" : ""}`}
         onClick={() => setIsCollapsed(!isCollapsed)}
       >
         <h3>{title}</h3>
-        <span className="toggle-icon">▼</span>
+        <span className="uh-toggle-icon">▼</span>
       </div>
-      {!isCollapsed && <div className="section-content">{children}</div>}
+      {!isCollapsed && <div className="uh-section-content">{children}</div>}
     </div>
   );
 }
@@ -92,66 +92,66 @@ export default function UserHomePage() {
       <div className="Header">
         <Header />
       </div>
-      <div className="user-home-container">
+      <div className="uh-container">
         <h2 className="user-home-header">User Home Page</h2>
 
         <CollapsibleSection title="Your Stats">
-          <div className="stats-container">
-            <div className="stat-item">
+          <div className="uh-stats-container">
+            <div className="uh-stat-item">
               <strong>Number of Reviews Written:</strong> {reviewList.length}
             </div>
-            <div className="stat-item">
+            <div className="uh-stat-item">
               <strong>Total Movies in Watchlist:</strong> {watchList.length}
             </div>
-            <div className="stat-item">
+            <div className="uh-stat-item">
               <strong>Average Rating Given:</strong> {avgRating}
             </div>
-            <div className="stat-item">
+            <div className="uh-stat-item">
               <strong>Most Watched Genre:</strong> {mostWatchedGenre}
             </div>
           </div>
         </CollapsibleSection>
 
         <CollapsibleSection title="Your Watchlist">
-          <div className="watchlist-grid">
+          <div className="uh-watchlist-grid">
             {watchList.map((movie) => (
               <div
                 key={movie.movie_id}
-                className="watchlist-item"
+                className="uh-watchlist-item"
                 onClick={() => navigate(`/movie?id=${movie.movie_id}`)}
               >
                 <img
                   src={movie.poster_url}
                   alt={movie.title}
-                  className="watchlist-poster"
+                  className="uh-watchlist-poster"
                 />
-                <div className="watchlist-title">{movie.title}</div>
+                <div className="uh-watchlist-title">{movie.title}</div>
               </div>
             ))}
           </div>
         </CollapsibleSection>
 
         <CollapsibleSection title="Your Reviews">
-          <ol className="reviews-list">
+          <ol className="uh-reviews-list">
             {reviewList.map((review) => (
               <li
                 key={review.movie_id}
-                className="review-item"
+                className="uh-review-item"
                 onClick={() => navigate(`/movie?id=${review.movie_id}`)}
               >
-                <div className="review-title">{review.title}</div>
-                <div className="review-meta">
+                <div className="uh-review-title">{review.title}</div>
+                <div className="uh-review-meta">
                   <span>Rating: {review.rating}</span>
                   <span>
                     Reviewed on:{" "}
                     {new Date(review.created_at).toLocaleDateString()}
                   </span>
                 </div>
-                <div className="review-text">
+                <div className="uh-review-text">
                   <strong>Review:</strong> {review.review}
                 </div>
                 {review.genres && (
-                  <div className="review-meta">
+                  <div className="uh-review-meta">
                     <span>Genres: {review.genres}</span>
                   </div>
                 )}
@@ -161,20 +161,20 @@ export default function UserHomePage() {
         </CollapsibleSection>
 
         <CollapsibleSection title="Rating Distribution">
-          <div className="distribution-container">
+          <div className="uh-distribution-container">
             {[5, 4, 3, 2, 1].map((star) => {
               const count = ratingDist[star] || 0;
               const total = reviewList.length;
               const percentage = total > 0 ? (count / total) * 100 : 0;
 
               return (
-                <div key={star} className="rating-bar">
-                  <div className="rating-stars">{star} ★</div>
-                  <div className="rating-count">
+                <div key={star} className="uh-rating-bar">
+                  <div className="uh-rating-stars">{star} ★</div>
+                  <div className="uh-rating-count">
                     <span>{count}</span>
-                    <div className="rating-bar-bg">
+                    <div className="uh-rating-bar-bg">
                       <div
-                        className="rating-bar-fill"
+                        className="uh-rating-bar-fill"
                         style={{ width: `${percentage}%` }}
                       ></div>
                     </div>
@@ -186,11 +186,11 @@ export default function UserHomePage() {
         </CollapsibleSection>
 
         <CollapsibleSection title="Genre Breakdown">
-          <div className="genres-grid">
+          <div className="uh-genres-grid">
             {Object.entries(genreCounts).map(([genre, count]) => (
-              <div key={genre} className="genre-item">
-                <span className="genre-name">{genre}</span>
-                <span className="genre-count">{count}</span>
+              <div key={genre} className="uh-genre-item">
+                <span className="uh-genre-name">{genre}</span>
+                <span className="uh-genre-count">{count}</span>
               </div>
             ))}
           </div>
