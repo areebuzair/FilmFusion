@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET; // Load the secret key from .env
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-   // const user_Id = req.params.user_id;
+    // const user_Id = req.params.user_id;
 
 
     if (!token) {
@@ -54,7 +54,7 @@ const authenticateToken = (req, res, next) => {
 // Example of a protected route
 router.get("/protected", authenticateToken, (req, res) => {
     console.log("Protected Route Visited")
-    res.json({ message: "This is a protected route", user: req.user, user_id: req.user.user_id});
+    res.json({ message: "This is a protected route", user: req.user, user_id: req.user.user_id });
 });
 
 // =========================
@@ -161,7 +161,7 @@ router.post('/movies/:id/rate-review', authenticateToken, (req, res) => {
 
     connection.query(
         "INSERT INTO movie_reviews (movie_id, user_id, rating, review) VALUES (?, ?, ?, ?)",
-        [movieId, user_Id, rating, review?review:"" ],
+        [movieId, user_Id, rating, review ? review : ""],
         (err, result) => {
             if (err) return res.status(500).json({ message: 'Error adding rating and review', error: err });
             res.status(201).json({ message: 'Rating and review added successfully' });
@@ -180,7 +180,7 @@ router.get('/movies/:id/rate-review', (req, res) => {
             if (err) return res.status(500).json({ message: 'Error fetching ratings and reviews', error: err });
             res.json(results);
             // Get the logged-in user's rating and review for a movie
-           
+
         }
     );
 });
@@ -201,6 +201,27 @@ router.get('/movies/:id/my-rate-review', authenticateToken, (req, res) => {
         }
     );
 });
+
+// get all the reviews of a user
+router.get('/movies/myreviews', authenticateToken, (req, res) => {
+    const user_Id = req.user.user_id;
+
+    const sql = `
+        SELECT movie_reviews.movie_id, movies.title, movie_reviews.rating, movie_reviews.review
+        FROM movie_reviews
+        JOIN movies ON movies.id = movie_reviews.movie_id
+        WHERE movie_reviews.user_id = ?
+    `;
+
+    connection.query(sql, [user_Id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error fetching user ratings and reviews', error: err });
+        }
+
+        res.json(results);
+    });
+});
+
  
 // Endpoint to Update the rating and review for a movie (Requires authentication )
 router.put('/movies/:id/rate-review', authenticateToken, (req, res) => {
@@ -235,7 +256,7 @@ router.put('/movies/:id/rate-review', authenticateToken, (req, res) => {
 // Add a movie to the user's watchlist (Requires authentication)
 router.post('/movies/:movie_id/watchlist', authenticateToken, (req, res) => {
     const { movie_id } = req.params;
-    const {user_id} = req.user;
+    const { user_id } = req.user;
 
     if (!user_id || !movie_id) {
         return res.status(400).json({ message: 'User ID and Movie ID are required' });
@@ -319,9 +340,13 @@ router.get('/movies/:id', (req, res) => {
         FROM movie_actors ma
         JOIN actors a ON ma.actor_id = a.id
         WHERE ma.movie_id = ?;
+        SELECT user_name, movie_reviews.id 
+       FROM users, movie_reviews 
+       WHERE users.user_id = movie_reviews.user_id 
+         AND movie_reviews.movie_id = ?
     `;
 
-    connection.query(sql, [movieId, movieId, movieId, movieId], (err, results) => {
+    connection.query(sql, [movieId, movieId, movieId, movieId, movieId], (err, results) => {
         if (err) {
             return res.status(500).json({ message: 'Error fetching movie details', error: err });
         }
@@ -330,11 +355,19 @@ router.get('/movies/:id', (req, res) => {
             return res.status(404).json({ message: 'Movie not found' });
         }
 
+        const reviews = results[2].map(review => {
+            const reviewer = results[4].find(r => r.id === review.id);
+            return {
+              ...review,
+              user_name: reviewer ? reviewer.user_name : null
+            };
+          });
+
         res.json({
             movie: results[0][0],          // First query result: movie
             genres: results[1][0]?.genres?.split(',') || [], // Second query: genre names
-            reviews: results[2],           // Third query: reviews
-            actors: results[3]             // Fourth query: actor list
+            reviews: reviews,           // Third query: reviews
+            actors: results[3],          // Fourth query: actor list
         });
     });
 });

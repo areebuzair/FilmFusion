@@ -9,6 +9,7 @@ import Dashboard from "../components/Dashboard";
 import MovieList from "../components/MovieList";
 import Home from "../components/Home";
 import MovieDetails from "../pages/MovieDetails";
+import UserHomePage from "../pages/UserHomePage";
 
 import Test from "../components/test";
 
@@ -53,6 +54,10 @@ const Routes = () => {
           path: "/dashboard",
           element: <Dashboard />,
         },
+        {
+          path: "/user",
+          element: <UserHomePage />
+        }
       ],
     },
   ];

@@ -1,3 +1,5 @@
+/* MovieDetails.css */
+
 .movie-details-container {
   display: flex;
   max-width: 1100px;
@@ -12,6 +14,9 @@
 
 .poster-container {
   flex: 0 0 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .poster-container img {
@@ -20,6 +25,41 @@
   border-radius: 10px;
   object-fit: cover;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.rating-distribution {
+  width: 90%;
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #0e0e0e;
+}
+
+.rating-bar-container {
+  margin-bottom: 8px;
+}
+
+.rating-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #555;
+}
+
+.rating-bar {
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rating-fill {
+  height: 100%;
+  background: #f39c12;
+  border-radius: 10px;
+  transition: width 0.5s ease;
 }
 
 .details-content {
@@ -104,6 +144,36 @@ ol li {
   border: 1px dashed #333;
 }
 
+.watchlist-btn {
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.watchlist-btn:hover {
+  background-color: #218838;
+}
+
+.watchlist-btn.remove {
+  background-color: #dc3545;
+}
+
+.watchlist-btn.remove:hover {
+  background-color: #c82333;
+}
+
+.watchlist-message {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #666;
+}
+
 @media (max-width: 768px) {
   .movie-details-container {
     flex-direction: column;
@@ -112,5 +182,9 @@ ol li {
 
   .poster-container {
     max-width: 100%;
+  }
+
+  .rating-distribution {
+    margin-top: 20px;
   }
 }

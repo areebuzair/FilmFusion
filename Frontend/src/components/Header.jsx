@@ -25,6 +25,9 @@ function Header() {
                   <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li>
+                  <Link to="/user">Profile</Link>
+                </li>
+                <li>
                   <button
                     className="logout-button"
                     onClick={() => navigate("/logout")}
