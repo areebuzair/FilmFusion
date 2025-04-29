@@ -25,6 +25,9 @@ function Header() {
             <li>
               <Link to="/">Movies</Link>
             </li>
+            <li>
+              <Link to="/recommendations">Recommendations</Link>
+            </li>
             {token ? (
               <>
                 <li>

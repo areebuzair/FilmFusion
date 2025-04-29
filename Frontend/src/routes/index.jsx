@@ -37,11 +37,14 @@ const Routes = () => {
       path: "/actor",
       element: <ActorProfile />,
     },
-    
     {
       path: "/moviesbygenre",
       element: <MoviesByGenres />,
     },
+    {
+      path: "/recommendations",
+      element: <Recommendations />
+    }
   ];
 
   // Define routes accessible only to authenticated users
@@ -70,10 +73,6 @@ const Routes = () => {
           path: "/user",
           element: <UserHomePage />
         },
-        {
-          path: "/recommendations",
-          element: <Recommendations />
-        }
       ],
     },
   ];

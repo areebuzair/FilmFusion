@@ -38,7 +38,7 @@ npm run dev
 ## Step 4:
 ```
 cd DataModel
-pip install flask panda
+pip install flask pandas
 pip install flask-cors
 python recommender.py
 ```

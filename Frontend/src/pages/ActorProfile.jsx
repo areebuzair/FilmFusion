@@ -34,6 +34,21 @@ export default function ActorProfile() {
     setIsFilmographyExpanded(!isFilmographyExpanded);
   };
 
+  function calculateAge(dateString) {
+    const birthDate = new Date(dateString);
+    const today = new Date();
+
+    let age = today.getUTCFullYear() - birthDate.getUTCFullYear();
+    const m = today.getUTCMonth() - birthDate.getUTCMonth();
+    const d = today.getUTCDate() - birthDate.getUTCDate();
+
+    if (m < 0 || (m === 0 && d < 0)) {
+      age--; // Haven't had birthday this year yet
+    }
+
+    return age;
+  }
+
   return (
     <>
       <div className="Header">
@@ -53,23 +68,21 @@ export default function ActorProfile() {
               {new Date(actorInfo[0].dob).toLocaleString("en-US", {
                 dateStyle: "long",
                 timeZone: "UTC",
-              })}
+              })} <small><i>({calculateAge(actorInfo[0].dob)} years old)</i></small>
             </p>
 
             <div className="filmography-section">
               <div
-                className={`filmography-header ${
-                  !isFilmographyExpanded ? "collapsed" : ""
-                }`}
+                className={`filmography-header ${!isFilmographyExpanded ? "collapsed" : ""
+                  }`}
                 onClick={toggleFilmography}
               >
                 <h2 className="filmography-title">Filmography</h2>
                 <span className="toggle-icon">▼</span>
               </div>
               <ul
-                className={`filmography-list ${
-                  isFilmographyExpanded ? "expanded" : ""
-                }`}
+                className={`filmography-list ${isFilmographyExpanded ? "expanded" : ""
+                  }`}
               >
                 {actorInfo.map((movie) => (
                   <li
