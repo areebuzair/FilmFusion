@@ -40,7 +40,11 @@ export default function MovieDetails() {
                     },
                 });
 
-                const isInWatchlist = res.data.watchlist?.some((item) => item.id === parseInt(movieId));
+                console.log(res.data)
+                console.log(movieId)
+
+                const isInWatchlist = res.data.some((item) => item.movie_id === parseInt(movieId));
+                console.log(isInWatchlist)
                 setInWatchlist(isInWatchlist);
             } catch (error) {
                 console.error("Error checking watchlist status", error);
@@ -67,7 +71,6 @@ export default function MovieDetails() {
             } else {
                 await axios.post(
                     `http://localhost:4500/film/movies/${movie.movie.id}/watchlist`,
-                    {},
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
@@ -138,7 +141,7 @@ export default function MovieDetails() {
                             ))}
                         </ol>
                     </div>
-                    
+
                     {token && (
                         <div style={{ margin: "10px 0" }}>
                             <button
