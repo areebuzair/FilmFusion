@@ -12,6 +12,7 @@ import MovieDetails from "../pages/MovieDetails";
 import UserHomePage from "../pages/UserHomePage";
 import ActorProfile from "../pages/ActorProfile";
 import Recommendations from "../pages/Recommendations";
+import MoviesByGenres from "../pages/MoviesByGenres";
 
 import Test from "../components/test";
 
@@ -35,6 +36,11 @@ const Routes = () => {
     {
       path: "/actor",
       element: <ActorProfile />,
+    },
+    
+    {
+      path: "/moviesbygenre",
+      element: <MoviesByGenres />,
     },
   ];
 

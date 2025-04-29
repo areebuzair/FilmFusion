@@ -149,7 +149,7 @@ export default function MovieDetails() {
             <div className="section-title">Genres</div>
             <ol>
               {movie.genres.map((genre) => (
-                <li key={genre}>{genre}</li>
+                <li key={genre} onClick={()=>{navigate(`/moviesbygenre?genre=${genre}`)}}>{genre}</li>
               ))}
             </ol>
 
