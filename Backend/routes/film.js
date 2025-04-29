@@ -208,13 +208,15 @@ router.get('/movies/:id/my-rate-review', authenticateToken, (req, res) => {
 // =========================
 
 // Add a movie to the user's watchlist (Requires authentication)
-router.post('/watchlist', authenticateToken, (req, res) => {
-    const { movie_id } = req.body;
+router.post('/movies/:movie_id/watchlist', authenticateToken, (req, res) => {
+    const { movie_id } = req.params;
     const {user_id} = req.user;
 
     if (!user_id || !movie_id) {
         return res.status(400).json({ message: 'User ID and Movie ID are required' });
     }
+
+    console.log(movie_id)
 
     connection.query(
         "INSERT INTO watch_later (user_id, movie_id, watched) VALUES (?, ?, false)",
@@ -241,7 +243,7 @@ router.get('/watchlist', authenticateToken, (req, res) => {
 });
 
 // Update the watched status of a movie in the user's watchlist (Requires authentication)
-router.put('/watchlist/:movie_id', authenticateToken, (req, res) => {
+router.put('/movies/watchlist/:movie_id', authenticateToken, (req, res) => {
     const { movie_id } = req.params;
     const { user_id } = req.user;
     const { watched } = req.body;
@@ -261,7 +263,7 @@ router.put('/watchlist/:movie_id', authenticateToken, (req, res) => {
 });
 
 //update to delete a movie from the watchlist
-router.delete('/watchlist/:movie_id', authenticateToken, (req, res) => {
+router.delete('/movies/:movie_id/watchlist', authenticateToken, (req, res) => {
     const { movie_id } = req.params;
     const { user_id } = req.user;
 
