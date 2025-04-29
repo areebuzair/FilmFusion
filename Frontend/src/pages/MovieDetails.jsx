@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useAuth } from '../provider/authProvider';
-import GiveRating from '../components/GiveRating';
+import React from 'react'
+import GiveRating from '../components/GiveRating'
+import { useAuth } from '../provider/authProvider'
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 export default function MovieDetails() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,20 +15,6 @@ export default function MovieDetails() {
     if (!id) {
       navigate("/");
     }
-    const [searchParams] = useSearchParams();
-    const [movie, setMovie] = useState(null);
-    const [inWatchlist, setInWatchlist] = useState(false);
-    const [watchlistMessage, setWatchlistMessage] = useState("");
-    const { token } = useAuth();
-    const navigate = useNavigate();
-
-    const movieId = searchParams.get("id");
-
-    useEffect(() => {
-        if (!movieId) {
-            navigate("/");
-            return;
-        }
 
         const fetchMovie = async () => {
             try {
