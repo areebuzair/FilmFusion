@@ -140,7 +140,7 @@ export default function MovieDetails() {
             <div className="section-title">Actors</div>
             <ol>
               {movie.actors.map((actor) => (
-                <li key={actor.id}>
+                <li key={actor.id} onClick={()=>{navigate(`/actor?id=${actor.id}`)}}>
                   {actor.first_name} {actor.last_name}
                 </li>
               ))}

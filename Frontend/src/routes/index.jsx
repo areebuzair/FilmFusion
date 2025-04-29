@@ -10,6 +10,7 @@ import MovieList from "../components/MovieList";
 import Home from "../components/Home";
 import MovieDetails from "../pages/MovieDetails";
 import UserHomePage from "../pages/UserHomePage";
+import ActorProfile from "../pages/ActorProfile";
 
 import Test from "../components/test";
 
@@ -29,6 +30,10 @@ const Routes = () => {
     {
       path: "/movie",
       element: <MovieDetails />,
+    },
+    {
+      path: "/actor",
+      element: <ActorProfile />,
     },
   ];
 
