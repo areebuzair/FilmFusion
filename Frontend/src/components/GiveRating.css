@@ -47,6 +47,7 @@
   min-height: 100px;
   transition: all 0.2s ease;
   background-color: #ddd;
+  color: black;
 }
 
 .movie-rating textarea:focus {

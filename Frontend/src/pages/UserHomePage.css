@@ -1,0 +1,227 @@
+/* UserHomePage.css */
+
+.user-home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #f0ebeb; /* Black text */
+}
+
+/* Collapsible Section Styling */
+.collapsible-section {
+  margin-bottom: 2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #000000;
+}
+
+.section-header {
+  background-color: #f5f5f5;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.section-header:hover {
+  background-color: #eeeeee;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #000000;
+}
+
+.section-header .toggle-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+.section-header.collapsed .toggle-icon {
+  transform: rotate(-90deg);
+}
+
+.section-content {
+  padding: 1.5rem;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Stats Section */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.stat-item {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.stat-item strong {
+  color: #3498db;
+  font-weight: 600;
+}
+
+/* Watchlist Section */
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.watchlist-item {
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.watchlist-item:hover {
+  transform: translateY(-5px);
+}
+
+.watchlist-poster {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.watchlist-title {
+  padding: 0.8rem;
+  text-align: center;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000000;
+}
+
+/* Reviews Section */
+.reviews-list {
+  list-style: none;
+  padding: 0;
+}
+
+.review-item {
+  background: #ffffff;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  color: #000000;
+}
+
+.review-title {
+  font-size: 1.2rem;
+  color: #3498db;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.review-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #555555;
+}
+
+.review-text {
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+/* Rating Distribution Section */
+.distribution-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 300px;
+}
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #000000;
+  height: 200px;
+  width: 1000px;
+}
+
+.rating-stars {
+  color: #f39c12;
+  width: 50px;
+  padding: 10px;
+}
+
+.rating-count {
+  flex: 1;
+  padding: auto;
+}
+
+.rating-bar-bg {
+  height: 20px;
+  background: #ecf0f1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rating-bar-fill {
+  height: 100%;
+  background: #f39c12;
+  border-radius: 10px;
+}
+
+/* Genres Section */
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.genre-item {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  color: #000000;
+}
+
+.genre-name {
+  font-weight: 500;
+}
+
+.genre-count {
+  color: #3498db;
+  font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+
+  .watchlist-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .genres-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
