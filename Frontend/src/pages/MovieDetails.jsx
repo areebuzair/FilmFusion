@@ -71,21 +71,28 @@ export default function MovieDetails() {
 
             <div className="section-title">Reviews</div>
             {token && <GiveRating movie_id={movie.movie.id} />}
-            <ol>
-              {movie.reviews.map((review) => (
-                <li key={review.id} className="review-item">
-                  <div>
-                    <strong>User Id:</strong> {review.user_id}
-                  </div>
-                  <div>
-                    <strong>Rating:</strong> {review.rating}
-                  </div>
-                  <div>
-                    <strong>Review:</strong> {review.review}
-                  </div>
-                </li>
-              ))}
-            </ol>
+            {/* Updated reviews section with empty state handling */}
+            {movie.reviews.length > 0 ? (
+              <ol className="reviews-list">
+                {movie.reviews.map((review) => (
+                  <li key={review.id} className="review-item">
+                    <div>
+                      <strong>User Id:</strong> {review.user_id}
+                    </div>
+                    <div>
+                      <strong>Rating:</strong> {review.rating}
+                    </div>
+                    <div>
+                      <strong>Review:</strong> {review.review}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <div className="no-reviews">
+                No reviews yet. Be the first to review!
+              </div>
+            )}
           </div>
         </div>
       )}
