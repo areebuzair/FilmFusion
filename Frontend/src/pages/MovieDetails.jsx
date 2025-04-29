@@ -63,7 +63,17 @@ export default function MovieDetails() {
                         <li key={genre}>{genre}</li>
                     ))}
                 </ol>
+                <h3>Reviews</h3>
                 {token && <GiveRating movie_id={movie.movie.id} />}
+                <ol>
+                    {movie.reviews.map((review) => (
+                        <li key={review.id}>
+                            User Id: {review.user_id} <br/>
+                            Rating: {review.rating} <br/>
+                            Review: {review.review} <br/>
+                        </li>
+                    ))}
+                </ol>
             </div>
         }
     </>
