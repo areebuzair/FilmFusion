@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import AddMovie from "./AddMovie";
 import AddActor from "./AddActor";
 import AddGenre from "./AddGenre";
+import LinkActorWithMovie from "./LinkActorWithMovie";
 import "./Dashboard.css";
 import Header from "./Header";
+import { Link } from "react-router-dom";
 
 function CollapsibleSection({ title, children, isInitiallyOpen = false }) {
   const [isCollapsed, setIsCollapsed] = useState(!isInitiallyOpen);
@@ -33,7 +35,7 @@ function Dashboard() {
       <div className="dashboard-container">
         <h2 className="dashboard-title">Admin Dashboard</h2>
         <div className="dashboard-content">
-          <CollapsibleSection title="Add Movie" isInitiallyOpen={true}>
+          <CollapsibleSection title="Add Movie">
             <AddMovie />
           </CollapsibleSection>
           <CollapsibleSection title="Add Actor">
@@ -42,8 +44,8 @@ function Dashboard() {
           <CollapsibleSection title="Add Genre">
             <AddGenre />
           </CollapsibleSection>
-          <CollapsibleSection title="Areeb" isInitiallyOpen={true}>
-            Waiting
+          <CollapsibleSection title="Assign movie to actor">
+            <LinkActorWithMovie />
           </CollapsibleSection>
         </div>
       </div>

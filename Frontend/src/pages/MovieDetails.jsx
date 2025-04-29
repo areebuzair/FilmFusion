@@ -28,6 +28,7 @@ export default function MovieDetails() {
         const res = await axios.get(
           `http://localhost:4500/film/movies/${movieId}`
         );
+        console.log(res.data)
         setMovie(res.data);
       } catch (error) {
         console.error("Error fetching movie details", error);

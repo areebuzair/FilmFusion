@@ -391,9 +391,9 @@ router.get('/movies/:id', (req, res) => {
 router.get('/actor/:id', (req, res) => {
     const actor_id = req.params.id;
     const sql = `SELECT * 
-FROM actors, actor_movie_log, movies 
-where actors.id = actor_movie_log.actor_id 
-and movies.id = actor_movie_log.movie_id
+FROM actors, movie_actors, movies 
+where actors.id = movie_actors.actor_id 
+and movies.id = movie_actors.movie_id
 and actors.id = ?;`;
     connection.query(sql, [actor_id], (err, results) => {
         if (err) return res.status(500).json({ message: 'Error fetching actor information', error: err });
@@ -413,6 +413,43 @@ where movies.id = movie_id and genres.id = genre_id and genres.name = ?;`;
 });
 
 
+// Add actor to movie log if not already associated
+router.post('/movies/:movieId/actors/:actorId', authenticateToken, (req, res) => {
+    const { movieId, actorId } = req.params;
+
+    // Validate input
+    if (!movieId || !actorId) {
+        return res.status(400).json({ message: 'Both movieId and actorId are required' });
+    }
+
+    const checkQuery = `
+        SELECT * FROM movie_actors
+        WHERE movie_id = ? AND actor_id = ?
+    `;
+
+    connection.query(checkQuery, [movieId, actorId], (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: 'Database error during check', error: err });
+        }
+
+        if (results.length > 0) {
+            return res.status(409).json({ message: 'This actor is already assigned to the movie' });
+        }
+
+        const insertQuery = `
+            INSERT INTO movie_actors (movie_id, actor_id)
+            VALUES (?, ?)
+        `;
+
+        connection.query(insertQuery, [movieId, actorId], (insertErr, insertResult) => {
+            if (insertErr) {
+                return res.status(500).json({ message: 'Error inserting actor-movie association', error: insertErr });
+            }
+
+            res.status(201).json({ message: 'Actor assigned to movie successfully', insertId: insertResult.insertId });
+        });
+    });
+});
 
 
 
