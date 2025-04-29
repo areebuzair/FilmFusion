@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../provider/authProvider";
 import GiveRating from "./GiveRating";
+import { useNavigate } from "react-router-dom";
 import "./MovieList.css"; // import the CSS file
 
 function MovieList() {
   const [movies, setMovies] = useState([]);
   const { token } = useAuth();
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -28,7 +30,7 @@ function MovieList() {
       ) : (
         <div className="movies-grid">
           {movies.map((movie) => (
-            <div key={movie.id} className="movie-card">
+            <div key={movie.id} className="movie-card" onClick={()=>{navigate(`/movie?id=${movie.id}`)}}>
               <img
                 src={movie.poster_url}
                 alt={movie.title}
