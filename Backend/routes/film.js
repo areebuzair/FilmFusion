@@ -201,6 +201,27 @@ router.get('/movies/:id/my-rate-review', authenticateToken, (req, res) => {
         }
     );
 });
+
+// get all the reviews of a user
+router.get('/movies/myreviews', authenticateToken, (req, res) => {
+    const user_Id = req.user.user_id;
+
+    const sql = `
+        SELECT movie_reviews.movie_id, movies.title, movie_reviews.rating, movie_reviews.review
+        FROM movie_reviews
+        JOIN movies ON movies.id = movie_reviews.movie_id
+        WHERE movie_reviews.user_id = ?
+    `;
+
+    connection.query(sql, [user_Id], (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error fetching user ratings and reviews', error: err });
+        }
+
+        res.json(results);
+    });
+});
+
  
 // Endpoint to Update the rating and review for a movie (Requires authentication )
 router.put('/movies/:id/rate-review', authenticateToken, (req, res) => {
