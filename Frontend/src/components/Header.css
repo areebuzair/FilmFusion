@@ -19,16 +19,38 @@
   align-items: center;
 }
 
-.logo a {
-  color: #ffffff;
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 0.5rem;
+}
+
+.logo-image {
+  height: 40px; /* Adjust to your preference */
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-link:hover .logo-image {
+  transform: scale(1.05);
+}
+
+.logo-link span {
   font-size: 1.5rem;
   font-weight: bold;
-  text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.logo a:hover {
-  color: #f0c14b;
+/* If you want the text to change color on hover */
+.logo-link:hover span {
+  color: #f0c14b; /* Your accent color */
 }
 
 .nav-links ul {

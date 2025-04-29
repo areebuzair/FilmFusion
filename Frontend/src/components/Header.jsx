@@ -12,7 +12,13 @@ function Header() {
     <header className="header">
       <div className="container">
         <div className="logo">
-          <Link to="/">MovieApp</Link>
+          <Link to="/" className="logo-link">
+            <img
+              src="./Logo.png" // Update this path
+              className="logo-image"
+            />
+            <span>MovieApp</span>
+          </Link>
         </div>
         <nav className="nav-links">
           <ul>
