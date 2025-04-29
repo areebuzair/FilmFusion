@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET; // Load the secret key from .env
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-   // const userId = req.params.user_id;
+   // const user_Id = req.params.user_id;
 
 
     if (!token) {
@@ -151,7 +151,7 @@ router.post('/movies/:id/rate-review', authenticateToken, (req, res) => {
     const { rating, review } = req.body;
     const user_Id = req.user.user_id;
 
-    console.log("User ID from token:", userId);
+    console.log("User ID from token:", user_Id);
     console.log("Movie ID:", movieId);
 
 
@@ -161,7 +161,7 @@ router.post('/movies/:id/rate-review', authenticateToken, (req, res) => {
 
     connection.query(
         "INSERT INTO movie_reviews (movie_id, user_id, rating, review) VALUES (?, ?, ?, ?)",
-        [movieId, userId, rating, review?review:"" ],
+        [movieId, user_Id, rating, review?review:"" ],
         (err, result) => {
             if (err) return res.status(500).json({ message: 'Error adding rating and review', error: err });
             res.status(201).json({ message: 'Rating and review added successfully' });
@@ -187,11 +187,11 @@ router.get('/movies/:id/rate-review', (req, res) => {
 
 router.get('/movies/:id/my-rate-review', authenticateToken, (req, res) => {
     const movieId = req.params.id;
-    const userId = req.user.user_id;
+    const user_Id = req.user.user_id;
 
     connection.query(
         "SELECT rating, review FROM movie_reviews WHERE movie_id = ? AND user_id = ?",
-        [movieId, userId],
+        [movieId, user_Id],
         (err, results) => {
             if (err) return res.status(500).json({ message: 'Error fetching user rating and review', error: err });
             if (results.length === 0) {
@@ -228,11 +228,11 @@ router.post('/watchlist', authenticateToken, (req, res) => {
 
 // Get the user's watchlist
 router.get('/watchlist', authenticateToken, (req, res) => {
-    const userId = req.user.user_id;
+    const user_Id = req.user.user_id;
 
     connection.query(
         "SELECT w.movie_id, m.title, m.release_year, m.director, w.watched FROM watchlist w JOIN movies m ON w.movie_id = m.id WHERE w.user_id = ?",
-        [userId],
+        [user_Id],
         (err, results) => {
             if (err) return res.status(500).json({ message: 'Error fetching watchlist', error: err });
             res.json(results);

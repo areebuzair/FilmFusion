@@ -8,6 +8,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 export default function MovieDetails() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [movieId, setMovieId] = useState("")
+    const { token } = useAuth();
     const navigate = useNavigate()
     useEffect(() => {
         let id = searchParams.get("id")
@@ -15,11 +16,16 @@ export default function MovieDetails() {
             navigate("/")
         }
         setMovieId(id)
-        console.log({id})
+        console.log({ id })
     }, [])
     return (<>
         <div>MovieDetails</div>
         Movie id {movieId}
+        Average Rating
+        Reviews
+        Add to Watchlater
+        {/* Conditionally render GiveRating component */}
+        {token && <GiveRating movie_id={movieId} />}
     </>
     )
 }

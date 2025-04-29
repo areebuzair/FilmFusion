@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useAuth } from "../provider/authProvider";
-import GiveRating from "./GiveRating";
 import { useNavigate } from "react-router-dom";
 import "./MovieList.css"; // import the CSS file
 
 function MovieList() {
   const [movies, setMovies] = useState([]);
-  const { token } = useAuth();
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -49,9 +46,6 @@ function MovieList() {
                   <span className="star">⭐</span>
                   <span>{movie.rating || "N/A"}</span>
                 </div>
-
-                {/* Conditionally render GiveRating component */}
-                {token && <GiveRating movie_id={movie.id} />}
               </div>
             </div>
           ))}
