@@ -34,3 +34,13 @@ cd Frontend
 npm i
 npm run dev
 ```
+
+## Step 4:
+```
+cd DataModel
+pip install flask panda
+pip install flask-cors
+python recommender.py
+```
+
+# keep the server running

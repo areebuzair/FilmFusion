@@ -1,0 +1,601 @@
+movieId,title,genres,rating
+125211,War and Peace (1965),(no genres listed),5.0
+133299,Tar Creek (2009),(no genres listed),5.0
+134107,The Stroll (2003),(no genres listed),5.0
+140144,The Story of O Part 2 (1984),(no genres listed),5.0
+144742,Milton Glaser: To Inform & Delight (2008),(no genres listed),5.0
+147144,Hachi-ko (1987),(no genres listed),5.0
+151585,Liquidation (2007),(no genres listed),5.0
+153873,"My God, My God, Why Hast Thou Forsaken Me? (2005)",(no genres listed),5.0
+157300,My Super Psycho Sweet 16: Part 2 (2010),(no genres listed),5.0
+157302,My Super Psycho Sweet 16: Part 3 (2012),(no genres listed),5.0
+160378,Sicario (1994),(no genres listed),5.0
+162608,Kevin Hart: What Now? (2016),(no genres listed),5.0
+165493,The Babushkas of Chernobyl (2015),(no genres listed),5.0
+166267,Finnish Blood Swedish Heart (2012),(no genres listed),5.0
+182723,Cosmos: A Spacetime Odissey,(no genres listed),5.0
+189159,Born in the USSR: 14 Up (1998),(no genres listed),5.0
+189161,Born in the USSR: 21 Up (2005),(no genres listed),5.0
+176601,Black Mirror,(no genres listed),4.541666666666667
+125127,Voyna i mir III. - Borogyino (1967),(no genres listed),4.5
+134861,Trevor Noah: African American (2013),(no genres listed),4.5
+144204,L'étudiante et Monsieur Henri (2015),(no genres listed),4.5
+152171,Michael Jackson - Bad (1987),(no genres listed),4.5
+154898,Dream Work (2001),(no genres listed),4.5
+157847,Being Charlie (2016),(no genres listed),4.5
+160590,Survive and Advance (2013),(no genres listed),4.5
+166862,The Women's Balcony,(no genres listed),4.5
+170231,Jaurès (2012),(no genres listed),4.5
+176091,Opus III (1924),(no genres listed),4.5
+177071,House of Cards (1990),(no genres listed),4.5
+178271,Pururambo,(no genres listed),4.5
+3283,Minnie and Moskowitz (1971),Action,5.0
+5369,Big Bad Mama (1974),Action,5.0
+73954,Air Force (1943),Action,5.0
+112807,Gunbuster (Top wo Narae) (1988),Action,5.0
+125920,Buffalo Girls (2012),Action,5.0
+126134,Cutie Honey (2004),Action,5.0
+148838,Zhit (2010),Action,5.0
+151781,Ghost in the Shell: Solid State Society (2006),Action,5.0
+165885,Smoke & Mirrors (2016),Action,5.0
+169902,Sleight (2017),Action,5.0
+173153,Heroes Shed No Tears (1986),Action,5.0
+207642,Kabir Singh (2019),Action,5.0
+26495,Yellowbeard (1983),Action,4.75
+83450,Brest Fortress (Brestskaya krepost) (2010),Action,4.75
+130518,The Amazing Screw-On Head (2006),Action,4.75
+5964,Company Business (1991),Action,4.5
+27485,Pistol Opera (Pisutoru opera) (2001),Action,4.5
+33905,Somebody Up There Likes Me (1956),Action,4.5
+34231,Fighter in the Wind (2004),Action,4.5
+50892,Izo (2004),Action,4.5
+57854,The Count of Monte Cristo (1934),Action,4.5
+61493,Flash Point (a.k.a. Flashpoint) (Dou fo sin) (2007),Action,4.5
+68486,Red Cliff Part II (Chi Bi Xia: Jue Zhan Tian Xia) (2009),Action,4.5
+69136,Don (1978),Action,4.5
+94011,"Big Bang, The (2011)",Action,4.5
+110599,"Sweet Jesus, Preacherman (1973)",Action,4.5
+112404,Jack Strong (2014),Action,4.5
+117565,God Forgives... I Don't! (1967),Action,4.5
+124326,White Line Fever (1975),Action,4.5
+125874,2012: Ice Age (2011),Action,4.5
+33,Wings of Courage (1995),Adventure,5.0
+27528,"Warrior, The (2001)",Adventure,5.0
+47868,Ronja Robbersdaughter (Ronja Rövardotter) (1984),Adventure,5.0
+48501,G.O.R.A. (2004),Adventure,5.0
+70282,Aliens in the Attic (2009),Adventure,5.0
+92740,Chapiteau-show (Shapito-shou) (2011),Adventure,5.0
+97665,Asterix & Obelix: God Save Britannia (Astérix et Obélix: Au service de Sa Majesté) (2012),Adventure,5.0
+101536,Alabama Moon (2009),Adventure,5.0
+117877,The Rabbi's Cat (Le chat du rabbin) (2011),Adventure,5.0
+122129,Scooby-Doo! Camp Scare (2010),Adventure,5.0
+134829,Ashens and the Quest for the Gamechild (2013),Adventure,5.0
+139620,Everything's Gonna Be Great (1998),Adventure,5.0
+156037,Hopelessly Lost (1973),Adventure,5.0
+159403,Neo Tokyo (1987),Adventure,5.0
+175387,On the Trail of the Bremen Town Musicians (1973),Adventure,5.0
+182547,Under an Arctic Sky (2017),Adventure,5.0
+26495,Yellowbeard (1983),Adventure,4.75
+99642,Tiny Toon Adventures: How I Spent My Vacation (1992),Adventure,4.75
+130518,The Amazing Screw-On Head (2006),Adventure,4.75
+181751,Lagaan: Once Upon a Time in India (2001),Adventure,4.75
+111778,Tracks (2013),Adventure,4.666666666666667
+5038,"Flight of Dragons, The (1982)",Adventure,4.5
+26025,"Spirit of St. Louis, The (1957)",Adventure,4.5
+26529,Asterix vs. Caesar (Astérix et la surprise de César) (1985),Adventure,4.5
+54241,"Lives of a Bengal Lancer, The (1935)",Adventure,4.5
+57854,The Count of Monte Cristo (1934),Adventure,4.5
+89554,Zindagi Na Milegi Dobara (2011),Adventure,4.5
+93420,"Art of Flight, The (2011)",Adventure,4.5
+95717,Treasure Island (2012),Adventure,4.5
+106300,"Day The Earth Froze, The (Sampo) (1959)",Adventure,4.5
+60259,Bambi 2 (2006),Animation,5.0
+90843,Lavatory Lovestory (Ubornaya istoriya - lyubovnaya istoriya) (2007),Animation,5.0
+109185,Night on the Galactic Railroad (Ginga-tetsudo no yoru) (1985),Animation,5.0
+109364,"King and the Mockingbird, The (Le roi et l'oiseau) (1980)",Animation,5.0
+109941,Puss in Boots: The Three Diablos (2012),Animation,5.0
+112807,Gunbuster (Top wo Narae) (1988),Animation,5.0
+113066,Food (Jídlo) (1993),Animation,5.0
+117740,The Fake (2013),Animation,5.0
+117877,The Rabbi's Cat (Le chat du rabbin) (2011),Animation,5.0
+122129,Scooby-Doo! Camp Scare (2010),Animation,5.0
+125960,The Trip to Squash Land (1967),Animation,5.0
+125966,Garfield's Halloween Adventure (1985),Animation,5.0
+126482,Strange Magic (2015),Animation,5.0
+135867,Rabbit Fire (1951),Animation,5.0
+136355,Big Top Scooby-Doo! (2012),Animation,5.0
+136357,Scooby-Doo! Legend of the Phantosaur (2011),Animation,5.0
+136363,Scooby-Doo! Music of the Vampire (2011),Animation,5.0
+136441,Ferdinand the Bull (1938),Animation,5.0
+136501,Three Little Pigs (1933),Animation,5.0
+142058,The Lorax (1972),Animation,5.0
+143440,"Mune, le gardien de la lune (2015)",Animation,5.0
+151781,Ghost in the Shell: Solid State Society (2006),Animation,5.0
+154890,Father and Daughter (2000),Animation,5.0
+159403,Neo Tokyo (1987),Animation,5.0
+163695,The King of Pigs (2011),Animation,5.0
+164047,Horton Hears a Who! (1970),Animation,5.0
+167494,Mower Minions (2016),Animation,5.0
+167792,"What's Opera, Doc? (1957)",Animation,5.0
+169022,Classmates (2016),Animation,5.0
+173955,Bully for Bugs (1953),Animation,5.0
+47868,Ronja Robbersdaughter (Ronja Rövardotter) (1984),Children,5.0
+60259,Bambi 2 (2006),Children,5.0
+70282,Aliens in the Attic (2009),Children,5.0
+101536,Alabama Moon (2009),Children,5.0
+109364,"King and the Mockingbird, The (Le roi et l'oiseau) (1980)",Children,5.0
+122129,Scooby-Doo! Camp Scare (2010),Children,5.0
+125966,Garfield's Halloween Adventure (1985),Children,5.0
+126482,Strange Magic (2015),Children,5.0
+135867,Rabbit Fire (1951),Children,5.0
+136355,Big Top Scooby-Doo! (2012),Children,5.0
+136357,Scooby-Doo! Legend of the Phantosaur (2011),Children,5.0
+136363,Scooby-Doo! Music of the Vampire (2011),Children,5.0
+136441,Ferdinand the Bull (1938),Children,5.0
+136501,Three Little Pigs (1933),Children,5.0
+139620,Everything's Gonna Be Great (1998),Children,5.0
+142058,The Lorax (1972),Children,5.0
+143440,"Mune, le gardien de la lune (2015)",Children,5.0
+156037,Hopelessly Lost (1973),Children,5.0
+164047,Horton Hears a Who! (1970),Children,5.0
+167792,"What's Opera, Doc? (1957)",Children,5.0
+175387,On the Trail of the Bremen Town Musicians (1973),Children,5.0
+188031,Petia and Little Red Riding Hood (1958),Children,5.0
+188059,Kashtanka (1952),Children,5.0
+188251,Adventures of Vasia Kurolesov (1981),Children,5.0
+197771,Long-Haired Hare (1949),Children,5.0
+173351,Wow! A Talking Fish! (1983),Children,4.833333333333333
+134849,Duck Amuck (1953),Children,4.583333333333333
+5038,"Flight of Dragons, The (1982)",Children,4.5
+26529,Asterix vs. Caesar (Astérix et la surprise de César) (1985),Children,4.5
+94978,I Wish (Kiseki) (2011),Children,4.5
+3231,"Saphead, The (1920)",Comedy,5.0
+3410,Soft Fruit (1999),Comedy,5.0
+5369,Big Bad Mama (1974),Comedy,5.0
+6402,Siam Sunset (1999),Comedy,5.0
+6914,Preaching to the Perverted (1997),Comedy,5.0
+8504,Box of Moon Light (1996),Comedy,5.0
+26411,"Adventures of Picasso, The (Picassos äventyr) (1978)",Comedy,5.0
+27729,Kal Ho Naa Ho (2003),Comedy,5.0
+27811,Buddy (2003),Comedy,5.0
+31148,Day of the Wacko (Dzien swira) (2002),Comedy,5.0
+41828,Don't Look Now: We're Being Shot At (La grande vadrouille) (1966),Comedy,5.0
+45656,Marilyn Hotchkiss' Ballroom Dancing & Charm School (2005),Comedy,5.0
+48501,G.O.R.A. (2004),Comedy,5.0
+51063,Trailer Park Boys: The Movie (2006),Comedy,5.0
+57069,Equinox Flower (Higanbana) (1958),Comedy,5.0
+59625,"Hey, Hey, It's Esther Blueburger (2008)",Comedy,5.0
+59814,Ex Drummer (2007),Comedy,5.0
+62420,"Pool, The (2007)",Comedy,5.0
+64408,"Sun Shines Bright, The (1953)",Comedy,5.0
+67907,Kiler (1997),Comedy,5.0
+69699,Love Streams (1984),Comedy,5.0
+71285,Beeswax (2009),Comedy,5.0
+74428,Absurdistan (2008),Comedy,5.0
+78898,"Big Hand for the Little Lady, A (1966)",Comedy,5.0
+79299,"No. 1 Ladies' Detective Agency, The (2008)",Comedy,5.0
+82591,Adventures of Power (2008),Comedy,5.0
+82850,Convict 13 (1920),Comedy,5.0
+83096,"Haunted House, The (1921)",Comedy,5.0
+83318,"Goat, The (1921)",Comedy,5.0
+83763,My Wife's Relations (1922),Comedy,5.0
+2209,Young and Innocent (1937),Crime,5.0
+7295,After the Life (2002),Crime,5.0
+25911,"Woman in the Window, The (1944)",Crime,5.0
+26612,"Better Tomorrow II, A (Ying hung boon sik II) (1987)",Crime,5.0
+27431,"Adversary, The (L'adversaire) (2002)",Crime,5.0
+34238,Symmetry (Symetria) (2003),Crime,5.0
+51063,Trailer Park Boys: The Movie (2006),Crime,5.0
+59814,Ex Drummer (2007),Crime,5.0
+60336,Bad Blood (Mauvais sang) (1986),Crime,5.0
+67907,Kiler (1997),Crime,5.0
+79299,"No. 1 Ladies' Detective Agency, The (2008)",Crime,5.0
+101850,Death on the Staircase (Soupçons) (2004),Crime,5.0
+120827,The Hound of the Baskervilles (1988),Crime,5.0
+132167,El Infierno (2010),Crime,5.0
+151781,Ghost in the Shell: Solid State Society (2006),Crime,5.0
+177737,Memoir of a Murderer (2017),Crime,5.0
+178771,Adele Hasn't Had Her Dinner Yet (1978),Crime,5.0
+184903,Joy Road (2011),Crime,5.0
+26587,"Decalogue, The (Dekalog) (1989)",Crime,4.7
+176887,Murder on the Orient Express (2010),Crime,4.666666666666667
+716,Switchblade Sisters (1975),Crime,4.5
+4243,Brigham City (2001),Crime,4.5
+7920,Desperate Living (1977),Crime,4.5
+25818,"Informer, The (1935)",Crime,4.5
+25828,"Petrified Forest, The (1936)",Crime,4.5
+26002,Confidential Report (1955),Crime,4.5
+26418,Buffet froid (1979),Crime,4.5
+27005,"Interview, The (1998)",Crime,4.5
+27485,Pistol Opera (Pisutoru opera) (2001),Crime,4.5
+30712,"Narrow Margin, The (1952)",Crime,4.5
+404,Brother Minister: The Assassination of Malcolm X (1994),Documentary,5.0
+756,Carmen Miranda: Bananas Is My Business (1994),Documentary,5.0
+859,"Hippie Revolution, The (1996)",Documentary,5.0
+1039,Synthetic Pleasures (1995),Documentary,5.0
+1901,Dear Jesse (1997),Documentary,5.0
+3226,Hellhounds on My Trail (1999),Documentary,5.0
+3881,Phish: Bittersweet Motel (2000),Documentary,5.0
+4778,Children Underground (2001),Documentary,5.0
+27334,Sound and Fury (2000),Documentary,5.0
+49899,We Feed the World (2005),Documentary,5.0
+66019,"Great Ecstasy of Woodcarver Steiner, The (Große Ekstase des Bildschnitzers Steiner, Die) (1974)",Documentary,5.0
+79866,Schmatta: Rags to Riches to Rags (2009),Documentary,5.0
+80337,Still Bill (2009),Documentary,5.0
+83827,Marwencol (2010),Documentary,5.0
+88570,Welfare (1975),Documentary,5.0
+92904,We Were Here (2011),Documentary,5.0
+95604,The War (2007),Documentary,5.0
+98246,"Seafarers, The (1953)",Documentary,5.0
+98981,"Arrival of a Train, The (1896)",Documentary,5.0
+100511,"House Is Black, The (1963)",Documentary,5.0
+101850,Death on the Staircase (Soupçons) (2004),Documentary,5.0
+103474,How to Make Money Selling Drugs (2013),Documentary,5.0
+104728,One Direction: This Is Us (2013),Documentary,5.0
+105215,Scatter My Ashes at Bergdorf's (2013),Documentary,5.0
+105497,Kumail Nanjiani: Beta Male (2013) ,Documentary,5.0
+107700,I Am Divine (2013),Documentary,5.0
+107910,I Know That Voice (2013),Documentary,5.0
+108220,"Square, The (Al Midan) (2013)",Documentary,5.0
+119171,Katt Williams: The Pimp Chronicles Pt. 1 (2006),Documentary,5.0
+123567,IMAX - Roving Mars (2006),Documentary,5.0
+503,"New Age, The (1994)",Drama,5.0
+796,"Very Natural Thing, A (1974)",Drama,5.0
+1555,"To Have, or Not (En avoir (ou pas)) (1995)",Drama,5.0
+2293,Shadrach (1998),Drama,5.0
+3410,Soft Fruit (1999),Drama,5.0
+4716,Bad Timing: A Sensual Obsession (1980),Drama,5.0
+4883,"Town is Quiet, The (Ville est tranquille, La) (2000)",Drama,5.0
+6914,Preaching to the Perverted (1997),Drama,5.0
+7295,After the Life (2002),Drama,5.0
+7621,Vengo (2000),Drama,5.0
+8504,Box of Moon Light (1996),Drama,5.0
+8803,Blue Spring (Aoi haru) (2001),Drama,5.0
+25918,"Tree Grows in Brooklyn, A (1945)",Drama,5.0
+26241,The Devils (1971),Drama,5.0
+26612,"Better Tomorrow II, A (Ying hung boon sik II) (1987)",Drama,5.0
+27236,Charisma (Karisuma) (1999),Drama,5.0
+27431,"Adversary, The (L'adversaire) (2002)",Drama,5.0
+27528,"Warrior, The (2001)",Drama,5.0
+27729,Kal Ho Naa Ho (2003),Drama,5.0
+27811,Buddy (2003),Drama,5.0
+31148,Day of the Wacko (Dzien swira) (2002),Drama,5.0
+32497,Love Letter (1995) ,Drama,5.0
+34238,Symmetry (Symetria) (2003),Drama,5.0
+39931,Damnation Alley (1977),Drama,5.0
+41094,Brides (Nyfes) (2004),Drama,5.0
+42783,Shadows of Our Forgotten Ancestors (Tini zabutykh predkiv) (1964),Drama,5.0
+45652,American Gun (2005),Drama,5.0
+45656,Marilyn Hotchkiss' Ballroom Dancing & Charm School (2005),Drama,5.0
+46108,Lower City (Cidade Baixa) (2005),Drama,5.0
+47868,Ronja Robbersdaughter (Ronja Rövardotter) (1984),Drama,5.0
+33524,Death Takes a Holiday (1934),Fantasy,5.0
+46083,Drawing Restraint 9 (2005),Fantasy,5.0
+70282,Aliens in the Attic (2009),Fantasy,5.0
+109364,"King and the Mockingbird, The (Le roi et l'oiseau) (1980)",Fantasy,5.0
+113066,Food (Jídlo) (1993),Fantasy,5.0
+126482,Strange Magic (2015),Fantasy,5.0
+128251,The Heavenly Kid (1985),Fantasy,5.0
+139195,Jim Henson's The Storyteller (1989),Fantasy,5.0
+143440,"Mune, le gardien de la lune (2015)",Fantasy,5.0
+159403,Neo Tokyo (1987),Fantasy,5.0
+184685,Legend of the Demon Cat (2017),Fantasy,5.0
+188059,Kashtanka (1952),Fantasy,5.0
+173351,Wow! A Talking Fish! (1983),Fantasy,4.833333333333333
+164280,Endless Poetry (2016),Fantasy,4.75
+174141,Belladonna of Sadness (1973),Fantasy,4.75
+4404,Faust (1926),Fantasy,4.555555555555555
+5038,"Flight of Dragons, The (1982)",Fantasy,4.5
+5695,To the Devil a Daughter (1976),Fantasy,4.5
+7304,Allegro non troppo (1977),Fantasy,4.5
+9011,Portrait of Jennie (1948),Fantasy,4.5
+50892,Izo (2004),Fantasy,4.5
+81075,"Temptation of St. Tony, The (Püha Tõnu kiusamine) (2009)",Fantasy,4.5
+95843,Goodbye Charlie (1964),Fantasy,4.5
+106300,"Day The Earth Froze, The (Sampo) (1959)",Fantasy,4.5
+106523,"Flight That Disappeared, The (1961)",Fantasy,4.5
+128952,House IV (1992),Fantasy,4.5
+133219,Tinker Bell and the Great Fairy Rescue (2010),Fantasy,4.5
+140239,Helter Skelter (2012),Fantasy,4.5
+140916,Malicious (1973),Fantasy,4.5
+143309,"Liza, the Fox-Fairy (2015)",Fantasy,4.5
+25911,"Woman in the Window, The (1944)",Film-Noir,5.0
+78438,Edge of the City (1957),Film-Noir,5.0
+30712,"Narrow Margin, The (1952)",Film-Noir,4.5
+34488,14 Hours (Fourteen Hours) (1951),Film-Noir,4.5
+320,Suture (1993),Film-Noir,4.333333333333333
+3435,Double Indemnity (1944),Film-Noir,4.28125
+8768,Criss Cross (1949),Film-Noir,4.25
+31545,"Trou, Le (Hole, The) (Night Watch, The) (1960)",Film-Noir,4.25
+78420,"House on Telegraph Hill, The (1951)",Film-Noir,4.25
+1212,"Third Man, The (1949)",Film-Noir,4.234567901234568
+922,Sunset Blvd. (a.k.a. Sunset Boulevard) (1950),Film-Noir,4.209090909090909
+942,Laura (1944),Film-Noir,4.205882352941177
+25927,"Stranger, The (1946)",Film-Noir,4.2
+1260,M (1931),Film-Noir,4.196428571428571
+930,Notorious (1946),Film-Noir,4.176991150442478
+1252,Chinatown (1974),Film-Noir,4.162735849056604
+2186,Strangers on a Train (1951),Film-Noir,4.142857142857143
+1248,Touch of Evil (1958),Film-Noir,4.11344537815126
+913,"Maltese Falcon, The (1941)",Film-Noir,4.100671140939597
+2726,"Killing, The (1956)",Film-Noir,4.075
+1273,Down by Law (1986),Film-Noir,4.065573770491803
+1617,L.A. Confidential (1997),Film-Noir,4.065084226646248
+7013,"Night of the Hunter, The (1955)",Film-Noir,4.060975609756097
+1284,"Big Sleep, The (1946)",Film-Noir,4.052
+4432,Sweet Smell of Success (1957),Film-Noir,4.0
+6515,You Only Live Once (1937),Film-Noir,4.0
+8410,Suddenly (1954),Film-Noir,4.0
+25865,"Letter, The (1940)",Film-Noir,4.0
+25920,"Blue Dahlia, The (1946)",Film-Noir,4.0
+25929,Nightmare Alley (1947),Film-Noir,4.0
+59814,Ex Drummer (2007),Horror,5.0
+104576,"Seasoning House, The (2012)",Horror,5.0
+106879,Fright Night 2: New Blood (2013),Horror,5.0
+108447,Atrocious (2010),Horror,5.0
+118252,All Cheerleaders Die (2013),Horror,5.0
+120827,The Hound of the Baskervilles (1988),Horror,5.0
+141928,Bloodsucking Bastards (2015),Horror,5.0
+157298,My Super Psycho Sweet 16 (2009),Horror,5.0
+159403,Neo Tokyo (1987),Horror,5.0
+165487,"Fear, Inc. (2016)",Horror,5.0
+173151,Vampyres (1974),Horror,5.0
+176347,Philosophy of a Knife (2008),Horror,5.0
+191781,Gyo: Tokyo Fish Attack (2012),Horror,5.0
+5262,Mr. Sardonicus (1961),Horror,4.75
+4404,Faust (1926),Horror,4.555555555555555
+5695,To the Devil a Daughter (1976),Horror,4.5
+6632,Of Unknown Origin (1983),Horror,4.5
+7281,"Scream, Blacula, Scream! (1973)",Horror,4.5
+32239,Save the Green Planet! (Jigureul jikyeora!) (2003),Horror,4.5
+43009,"Ordeal, The (Calvaire) (2004)",Horror,4.5
+43832,"Call of Cthulhu, The (2005)",Horror,4.5
+50892,Izo (2004),Horror,4.5
+54605,"Kill, Baby, Kill (Operazione paura) (1966)",Horror,4.5
+60303,Strange Circus (Kimyô na sâkasu) (2005),Horror,4.5
+63989,"Devil Doll, The (1936)",Horror,4.5
+80097,Mother Joan of the Angels (Matka Joanna od aniolów) (1961),Horror,4.5
+83601,Amer (2009),Horror,4.5
+84792,Szamanka (1996),Horror,4.5
+98109,Citadel (2012),Horror,4.5
+121263,Summer's Moon (2009),Horror,4.5
+33,Wings of Courage (1995),IMAX,5.0
+4858,Hail Columbia! (1982),IMAX,4.5
+57970,U2 3D (2007),IMAX,4.5
+99045,Aftershock (Tangshan dadizhen) (2010),IMAX,4.25
+72131,Michael Jackson's This Is It (2009),IMAX,4.166666666666667
+79132,Inception (2010),IMAX,4.164233576642336
+58559,"Dark Knight, The (2008)",IMAX,4.148241206030151
+109487,Interstellar (2014),IMAX,4.0715648854961835
+1797,Everest (1998),IMAX,4.024390243902439
+111759,Edge of Tomorrow (2014),IMAX,4.009966777408638
+4856,Destiny in Space (1994),IMAX,4.0
+31429,Aliens of the Deep (2005),IMAX,4.0
+43934,Deep Sea 3D (2006),IMAX,4.0
+100882,Journey to the West: Conquering the Demons (Daai wa sai you chi Chui mo chun kei) (2013),IMAX,4.0
+91529,"Dark Knight Rises, The (2012)",IMAX,3.9331983805668016
+76093,How to Train Your Dragon (2010),IMAX,3.9287749287749287
+68358,Star Trek (2009),IMAX,3.904040404040404
+78499,Toy Story 3 (2010),IMAX,3.8994334277620397
+33794,Batman Begins (2005),IMAX,3.8911609498680737
+150,Apollo 13 (1995),IMAX,3.889823717948718
+81834,Harry Potter and the Deathly Hallows: Part 1 (2010),IMAX,3.854285714285714
+88125,Harry Potter and the Deathly Hallows: Part 2 (2011),IMAX,3.844674556213018
+44191,V for Vendetta (2006),IMAX,3.8346213292117466
+364,"Lion King, The (1994)",IMAX,3.833180987202925
+102445,Star Trek Into Darkness (2013),IMAX,3.8095238095238093
+89745,"Avengers, The (2012)",IMAX,3.7786177105831533
+4454,More (1998),IMAX,3.7777777777777777
+105504,Captain Phillips (2013),IMAX,3.7542372881355934
+69844,Harry Potter and the Half-Blood Prince (2009),IMAX,3.7430939226519335
+8368,Harry Potter and the Prisoner of Azkaban (2004),IMAX,3.7348214285714287
+7621,Vengo (2000),Musical,5.0
+82591,Adventures of Power (2008),Musical,5.0
+126482,Strange Magic (2015),Musical,5.0
+136501,Three Little Pigs (1933),Musical,5.0
+39768,Life is a Miracle (Zivot je cudo) (2004),Musical,4.75
+5042,Forbidden Zone (1980),Musical,4.5
+7304,Allegro non troppo (1977),Musical,4.5
+26271,Lady Sings the Blues (1972),Musical,4.5
+27163,Something Is Happening (Kuch Kuch Hota Hai) (1998),Musical,4.5
+27326,Devdas (2002),Musical,4.5
+27812,Festival Express (2003),Musical,4.5
+31991,Love Me Tonight (1932),Musical,4.5
+32285,"Boys & Girl from County Clare, The (a.k.a. The Boys from County Clare) (2003)",Musical,4.5
+46098,Crossing the Bridge: The Sound of Istanbul (2005),Musical,4.5
+58111,Jodhaa Akbar (2008),Musical,4.5
+59753,Memories of Matsuko (Kiraware Matsuko no isshô) (2006),Musical,4.5
+69136,Don (1978),Musical,4.5
+78976,Stones in Exile (2010),Musical,4.5
+94074,Rush: Beyond the Lighted Stage (2010),Musical,4.5
+8971,Veer Zaara (2004),Musical,4.333333333333333
+1937,Going My Way (1944),Musical,4.269230769230769
+8574,"Claymation Christmas Celebration, A (1987)",Musical,4.25
+64650,"Marriage Made in Heaven, A (Rab Ne Bana Di Jodi) (2008)",Musical,4.25
+83264,Band Baaja Baaraat (2010),Musical,4.25
+91821,"Muppet Family Christmas, A (1987)",Musical,4.25
+94939,Sound of Noise (2010),Musical,4.25
+114277,God Help the Girl (2014),Musical,4.25
+7075,"Court Jester, The (1956)",Musical,4.208333333333333
+67429,Sita Sings the Blues (2008),Musical,4.2
+907,"Gay Divorcee, The (1934)",Musical,4.1875
+27431,"Adversary, The (L'adversaire) (2002)",Mystery,5.0
+79299,"No. 1 Ladies' Detective Agency, The (2008)",Mystery,5.0
+120827,The Hound of the Baskervilles (1988),Mystery,5.0
+122129,Scooby-Doo! Camp Scare (2010),Mystery,5.0
+136357,Scooby-Doo! Legend of the Phantosaur (2011),Mystery,5.0
+136363,Scooby-Doo! Music of the Vampire (2011),Mystery,5.0
+184685,Legend of the Demon Cat (2017),Mystery,5.0
+188251,Adventures of Vasia Kurolesov (1981),Mystery,5.0
+198185,Twin Peaks (1989),Mystery,4.777777777777778
+176887,Murder on the Orient Express (2010),Mystery,4.666666666666667
+4243,Brigham City (2001),Mystery,4.5
+5695,To the Devil a Daughter (1976),Mystery,4.5
+8506,Fear X (2003),Mystery,4.5
+9011,Portrait of Jennie (1948),Mystery,4.5
+26002,Confidential Report (1955),Mystery,4.5
+27005,"Interview, The (1998)",Mystery,4.5
+59753,Memories of Matsuko (Kiraware Matsuko no isshô) (2006),Mystery,4.5
+60198,"Sandglass, The (Sanatorium pod klepsydra) (1973)",Mystery,4.5
+60303,Strange Circus (Kimyô na sâkasu) (2005),Mystery,4.5
+76778,Rembrandt's J'accuse (2008),Mystery,4.5
+81075,"Temptation of St. Tony, The (Püha Tõnu kiusamine) (2009)",Mystery,4.5
+84792,Szamanka (1996),Mystery,4.5
+86401,Children of Nature (Börn náttúrunnar) (1991),Mystery,4.5
+86436,"Crimson Kimono, The (1959)",Mystery,4.5
+90364,"O-Bi, O-Ba - The End of Civilization (O-bi, O-ba - Koniec cywilizacji) (1985)",Mystery,4.5
+112689,Miss Violence (2013),Mystery,4.5
+117913,Scooby-Doo! Frankencreepy (2014),Mystery,4.5
+130784,The Whisperer in Darkness (2011),Mystery,4.5
+148058,Talvar (2015),Mystery,4.5
+162460,The Childhood of a Leader (2016),Mystery,4.5
+33,Wings of Courage (1995),Romance,5.0
+27729,Kal Ho Naa Ho (2003),Romance,5.0
+32497,Love Letter (1995) ,Romance,5.0
+33524,Death Takes a Holiday (1934),Romance,5.0
+41094,Brides (Nyfes) (2004),Romance,5.0
+42783,Shadows of Our Forgotten Ancestors (Tini zabutykh predkiv) (1964),Romance,5.0
+45656,Marilyn Hotchkiss' Ballroom Dancing & Charm School (2005),Romance,5.0
+54967,"Hunting and Gathering (Ensemble, c'est tout) (2007)",Romance,5.0
+60336,Bad Blood (Mauvais sang) (1986),Romance,5.0
+61100,Still Life (Sanxia haoren) (2006),Romance,5.0
+72899,Blissfully Yours (Sud sanaeha) (2002),Romance,5.0
+74428,Absurdistan (2008),Romance,5.0
+78701,"Guitar, The (2008)",Romance,5.0
+87964,Breaking Upwards (2010),Romance,5.0
+91741,Peas at 5:30 (Erbsen auf halb 6) (2004),Romance,5.0
+104959,Aurora Borealis (2005),Romance,5.0
+111251,"Immigrant, The (2013)",Romance,5.0
+120104,Fitzwilly (1967),Romance,5.0
+128251,The Heavenly Kid (1985),Romance,5.0
+128538,My Mistress (2014),Romance,5.0
+151367,Twisted Seduction (2010),Romance,5.0
+151589,Bloodworth (2010),Romance,5.0
+151629,World Without End (2012),Romance,5.0
+164921,Validation (2007),Romance,5.0
+166167,Love 911 (2012),Romance,5.0
+175455,Everything Will Be All Right (1995),Romance,5.0
+176999,14+ (2015),Romance,5.0
+199436,Luka Chuppi (2019),Romance,5.0
+202357,A Brother (2018),Romance,5.0
+205106,Can You Keep a Secret? (2019),Romance,5.0
+39931,Damnation Alley (1977),Sci-Fi,5.0
+48501,G.O.R.A. (2004),Sci-Fi,5.0
+70282,Aliens in the Attic (2009),Sci-Fi,5.0
+112807,Gunbuster (Top wo Narae) (1988),Sci-Fi,5.0
+123288,Taken (2002),Sci-Fi,5.0
+151781,Ghost in the Shell: Solid State Society (2006),Sci-Fi,5.0
+159403,Neo Tokyo (1987),Sci-Fi,5.0
+168942,Tykho Moon (1996),Sci-Fi,5.0
+169902,Sleight (2017),Sci-Fi,5.0
+185975,Fast Color (2018),Sci-Fi,5.0
+130518,The Amazing Screw-On Head (2006),Sci-Fi,4.75
+3375,Destination Moon (1950),Sci-Fi,4.5
+5042,Forbidden Zone (1980),Sci-Fi,4.5
+32239,Save the Green Planet! (Jigureul jikyeora!) (2003),Sci-Fi,4.5
+63989,"Devil Doll, The (1936)",Sci-Fi,4.5
+90364,"O-Bi, O-Ba - The End of Civilization (O-bi, O-ba - Koniec cywilizacji) (1985)",Sci-Fi,4.5
+106523,"Flight That Disappeared, The (1961)",Sci-Fi,4.5
+125874,2012: Ice Age (2011),Sci-Fi,4.5
+130784,The Whisperer in Darkness (2011),Sci-Fi,4.5
+146156,Mr India (1987),Sci-Fi,4.5
+151695,The Survivalist (2015),Sci-Fi,4.5
+168554,iBoy (2017),Sci-Fi,4.5
+171133,Circuitry Man (1990),Sci-Fi,4.5
+173309,Legend of the Galactic Heroes: Overture to a New War (1993),Sci-Fi,4.5
+174703,I Am So Proud of You (2008),Sci-Fi,4.5
+177595,Monster on the Campus (1958),Sci-Fi,4.5
+179055,2036: Nexus Dawn (2017),Sci-Fi,4.5
+187043,Faust: Love of the Damned (2001),Sci-Fi,4.5
+192083,Mutant War (1988),Sci-Fi,4.5
+201038,Helldriver (2010),Sci-Fi,4.5
+2209,Young and Innocent (1937),Thriller,5.0
+25911,"Woman in the Window, The (1944)",Thriller,5.0
+26612,"Better Tomorrow II, A (Ying hung boon sik II) (1987)",Thriller,5.0
+27431,"Adversary, The (L'adversaire) (2002)",Thriller,5.0
+39931,Damnation Alley (1977),Thriller,5.0
+76772,Carne (1991),Thriller,5.0
+103736,Scenic Route (2013),Thriller,5.0
+104576,"Seasoning House, The (2012)",Thriller,5.0
+108447,Atrocious (2010),Thriller,5.0
+117346,Secrets Of State (2008),Thriller,5.0
+117740,The Fake (2013),Thriller,5.0
+118252,All Cheerleaders Die (2013),Thriller,5.0
+151367,Twisted Seduction (2010),Thriller,5.0
+151781,Ghost in the Shell: Solid State Society (2006),Thriller,5.0
+165885,Smoke & Mirrors (2016),Thriller,5.0
+166235,Shut In (2016),Thriller,5.0
+169902,Sleight (2017),Thriller,5.0
+173151,Vampyres (1974),Thriller,5.0
+176927,Woodshock (2017),Thriller,5.0
+177737,Memoir of a Murderer (2017),Thriller,5.0
+185975,Fast Color (2018),Thriller,5.0
+166568,Miss Sloane (2016),Thriller,4.642857142857143
+107649,Borgman (2013),Thriller,4.625
+5416,Cherish (2002),Thriller,4.5
+6971,Europa (Zentropa) (1991),Thriller,4.5
+8506,Fear X (2003),Thriller,4.5
+26002,Confidential Report (1955),Thriller,4.5
+27005,"Interview, The (1998)",Thriller,4.5
+32239,Save the Green Planet! (Jigureul jikyeora!) (2003),Thriller,4.5
+33893,"Perfect Crime, The (Crimen Ferpecto) (Ferpect Crime) (2004)",Thriller,4.5
+41828,Don't Look Now: We're Being Shot At (La grande vadrouille) (1966),War,5.0
+73954,Air Force (1943),War,5.0
+80191,Fear and Desire (1953),War,5.0
+90312,Quiet Flows the Don (Tikhiy Don) (1957),War,5.0
+95604,The War (2007),War,5.0
+115969,Generation War (2013),War,5.0
+126947,Carriage to Vienna (1966),War,5.0
+131166,WWII IN HD (2009),War,5.0
+172017,Hatred (2016),War,5.0
+26325,Hearts and Minds (1974),War,4.833333333333333
+39768,Life is a Miracle (Zivot je cudo) (2004),War,4.75
+83450,Brest Fortress (Brestskaya krepost) (2010),War,4.75
+117364,Virunga (2014),War,4.666666666666667
+6896,Shoah (1985),War,4.625
+93040,"Civil War, The (1990)",War,4.545454545454546
+6061,Kedma (2002),War,4.5
+25751,"Big Parade, The (1925)",War,4.5
+26158,Closely Watched Trains (Ostre sledované vlaky) (1966),War,4.5
+26822,The Puppetmaster (1993),War,4.5
+32906,"Ascent, The (Voskhozhdeniye) (1977)",War,4.5
+32974,Black Rain (Kuroi ame) (1989),War,4.5
+50892,Izo (2004),War,4.5
+58111,Jodhaa Akbar (2008),War,4.5
+60341,Standard Operating Procedure (2008),War,4.5
+60391,Alexandra (Aleksandra) (2007),War,4.5
+61473,"Secret, A (Un secret) (2007)",War,4.5
+68486,Red Cliff Part II (Chi Bi Xia: Jue Zhan Tian Xia) (2009),War,4.5
+69911,Senso (1954),War,4.5
+72178,Welcome to Dongmakgol (2005),War,4.5
+77596,Lebanon (2009),War,4.5
+57484,3 Bad Men (1926),Western,5.0
+78898,"Big Hand for the Little Lady, A (1966)",Western,5.0
+128695,The Dark Valley (2014),Western,5.0
+8618,Johnny Guitar (1954),Western,4.5
+57476,The Cheyenne Social Club (1970),Western,4.5
+63793,Wagon Master (1950),Western,4.5
+117565,God Forgives... I Don't! (1967),Western,4.5
+165985,Rawhide (1951),Western,4.5
+5199,"Long Riders, The (1980)",Western,4.25
+3037,Little Big Man (1970),Western,4.2265625
+1209,Once Upon a Time in the West (C'era una volta il West) (1968),Western,4.2218045112781954
+3133,Go West (1925),Western,4.2
+4791,Valdez Is Coming (1971),Western,4.166666666666667
+25938,Fort Apache (1948),Western,4.166666666666667
+800,Lone Star (1996),Western,4.1568627450980395
+1201,"Good, the Bad and the Ugly, The (Buono, il brutto, il cattivo, Il) (1966)",Western,4.118888888888889
+3508,"Outlaw Josey Wales, The (1976)",Western,4.111111111111111
+26258,"Topo, El (1970)",Western,4.107142857142857
+1304,Butch Cassidy and the Sundance Kid (1969),Western,4.090163934426229
+6412,Destry Rides Again (1939),Western,4.083333333333333
+3681,For a Few Dollars More (Per qualche dollaro in più) (1965),Western,4.043165467625899
+3467,Hud (1963),Western,4.042553191489362
+1254,"Treasure of the Sierra Madre, The (1948)",Western,4.026717557251908
+4406,"Man Who Shot Liberty Valance, The (1962)",Western,4.024390243902439
+56782,There Will Be Blood (2007),Western,4.023404255319149
+99114,Django Unchained (2012),Western,4.019114688128773
+3365,"Searchers, The (1956)",Western,4.009803921568627
+2951,"Fistful of Dollars, A (Per un pugno di dollari) (1964)",Western,4.005780346820809
+2070,Tender Mercies (1983),Western,4.0
+3601,"Castaway Cowboy, The (1974)",Western,4.0
