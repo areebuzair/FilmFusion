@@ -160,7 +160,7 @@ export default function MovieDetails() {
                 {movie.reviews.map((review) => (
                   <li key={review.id} className="review-item">
                     <div>
-                      <strong>User Id:</strong> {review.user_id}
+                      <strong>User Name:</strong> {review.user_name}
                     </div>
                     <div>
                       <strong>Rating:</strong> {review.rating}

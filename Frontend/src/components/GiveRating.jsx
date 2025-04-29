@@ -54,20 +54,37 @@ export default function GiveRating({ movie_id }) {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await axios.post(
-        `http://localhost:4500/film/movies/${movie_id}/rate-review`,
-        {
-          rating: stars,
-          review: reviewText,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      if(!isUpdating){
+        const response = await axios.post(
+          `http://localhost:4500/film/movies/${movie_id}/rate-review`,
+          {
+            rating: stars,
+            review: reviewText,
           },
-        }
-      );
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("Submitted successfully:", response.data);
+      }
+      else{
+        const response = await axios.put(
+          `http://localhost:4500/film/movies/${movie_id}/rate-review`,
+          {
+            rating: stars,
+            review: reviewText,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("Submitted successfully:", response.data);
+      }
 
-      console.log("Submitted successfully:", response.data);
       setIsUpdating(true);
       alert("Review saved!");
     } catch (error) {
@@ -132,7 +149,7 @@ export default function GiveRating({ movie_id }) {
 
           <button
             type="submit"
-            disabled={loading || reviewText.length > 250 || isUpdating}
+            disabled={loading || reviewText.length > 250}
             style={{
               marginTop: "8px",
               padding: "6px 12px",
