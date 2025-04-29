@@ -260,6 +260,50 @@ router.put('/watchlist/:movie_id', authenticateToken, (req, res) => {
     );
 });
 
+//module to export movie details  
+router.get('/movies/:id', (req, res) => {
+    const movieId = req.params.id;
+
+    const sql = `
+        SELECT * FROM movies WHERE id = ?;
+        SELECT m.id, GROUP_CONCAT(g.name) AS genres
+        FROM movies m
+        LEFT JOIN movie_genres mg ON m.id = mg.movie_id
+        LEFT JOIN genres g ON mg.genre_id = g.id
+        WHERE m.id = ?
+        GROUP BY m.id;
+        SELECT * FROM movie_reviews WHERE movie_id = ?;
+        SELECT *
+        FROM movie_actors ma
+        JOIN actors a ON ma.actor_id = a.id
+        WHERE ma.movie_id = ?;
+    `;
+
+    connection.query(sql, [movieId, movieId, movieId, movieId], (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error fetching movie details', error: err });
+        }
+
+        if (!results[0] || results[0].length === 0) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
+
+        res.json({
+            movie: results[0][0],          // First query result: movie
+            genres: results[1][0]?.genres?.split(',') || [], // Second query: genre names
+            reviews: results[2],           // Third query: reviews
+            actors: results[3]             // Fourth query: actor list
+        });
+    });
+});
+
+
+
+
+
+
+
+
 
 
 module.exports = router
