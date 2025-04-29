@@ -23,16 +23,16 @@ export default function MovieDetails() {
       return;
     }
 
-        const fetchMovie = async () => {
-            try {
-                const res = await axios.get(`http://localhost:4500/film/movies/${movieId}`);
-                setMovie(res.data);
-                console.log(res.data)
-            } catch (error) {
-                console.error("Error fetching movie details", error);
-            }
-        };
-
+    const fetchMovie = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:4500/film/movies/${movieId}`
+        );
+        setMovie(res.data);
+      } catch (error) {
+        console.error("Error fetching movie details", error);
+      }
+    };
 
     const fetchWatchlistStatus = async () => {
       try {
@@ -42,8 +42,8 @@ export default function MovieDetails() {
           },
         });
 
-        const isInWatchlist = res.data.watchlist?.some(
-          (item) => item.id === parseInt(movieId)
+        const isInWatchlist = res.data.some(
+          (item) => item.movie_id === parseInt(movieId)
         );
         setInWatchlist(isInWatchlist);
       } catch (error) {
@@ -53,7 +53,7 @@ export default function MovieDetails() {
 
     fetchMovie();
     if (token) fetchWatchlistStatus();
-  }, [movieId]);
+  }, [movieId, token]);
 
   const toggleWatchlist = async () => {
     if (!token || !movie) return;
@@ -84,16 +84,45 @@ export default function MovieDetails() {
       setWatchlistMessage("⚠️ Error updating watchlist.");
     }
   };
+
   return (
     <>
       <div className="Header">
-        {" "}
-        <Header />{" "}
+        <Header />
       </div>
       {movie && (
         <div className="movie-details-container">
           <div className="poster-container">
             <img src={movie.movie.poster_url} alt={movie.movie.title} />
+
+            {/* Rating Distribution Graph */}
+            <div className="rating-distribution">
+              <h3>Rating Distribution</h3>
+              {[5, 4, 3, 2, 1].map((rating) => {
+                const count = movie.reviews.filter(
+                  (r) => r.rating === rating
+                ).length;
+                const total = movie.reviews.length;
+                const percentage = total > 0 ? (count / total) * 100 : 0;
+
+                return (
+                  <div key={rating} className="rating-bar-container">
+                    <div className="rating-label">
+                      <span>{rating} ★</span>
+                      <span>
+                        {count} {count === 1 ? "vote" : "votes"}
+                      </span>
+                    </div>
+                    <div className="rating-bar">
+                      <div
+                        className="rating-fill"
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           <div className="details-content">
@@ -126,7 +155,6 @@ export default function MovieDetails() {
 
             <div className="section-title">Reviews</div>
             {token && <GiveRating movie_id={movie.movie.id} />}
-            {/* Updated reviews section with empty state handling */}
             {movie.reviews.length > 0 ? (
               <ol className="reviews-list">
                 {movie.reviews.map((review) => (
@@ -148,35 +176,23 @@ export default function MovieDetails() {
                 No reviews yet. Be the first to review!
               </div>
             )}
-          </div>
 
-          {token && (
-            <div style={{ margin: "10px 0" }}>
-              <button
-                onClick={toggleWatchlist}
-                style={{
-                  padding: "6px 12px",
-                  backgroundColor: inWatchlist ? "#dc3545" : "#28a745",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-                  fontSize: "14px",
-                }}
-              >
-                {inWatchlist
-                  ? "➖ Remove from Watchlist"
-                  : "➕ Add to Watchlist"}
-              </button>
-              {watchlistMessage && (
-                <div
-                  style={{ marginTop: "6px", fontSize: "13px", color: "gray" }}
+            {token && (
+              <div style={{ margin: "20px 0" }}>
+                <button
+                  onClick={toggleWatchlist}
+                  className={`watchlist-btn ${inWatchlist ? "remove" : ""}`}
                 >
-                  {watchlistMessage}
-                </div>
-              )}
-            </div>
-          )}
+                  {inWatchlist
+                    ? "➖ Remove from Watchlist"
+                    : "➕ Add to Watchlist"}
+                </button>
+                {watchlistMessage && (
+                  <div className="watchlist-message">{watchlistMessage}</div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>
