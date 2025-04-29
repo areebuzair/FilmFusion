@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Dashboard from '../components/Dashboard';
 import MovieList from '../components/MovieList';
 import Home from "../components/Home";
+import MovieDetails from "../pages/MovieDetails";
 
 
 import Test from "../components/test";
@@ -24,6 +25,10 @@ const Routes = () => {
     {
       path: "/about-us",
       element: <div>About Us</div>,
+    },
+    {
+      path: "/movie",
+      element: <MovieDetails />,
     },
   ];
 
