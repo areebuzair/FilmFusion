@@ -207,10 +207,25 @@ router.get('/movies/myreviews', authenticateToken, (req, res) => {
     const user_Id = req.user.user_id;
 
     const sql = `
-        SELECT movie_reviews.movie_id, movies.title, movie_reviews.rating, movie_reviews.review
-        FROM movie_reviews
-        JOIN movies ON movies.id = movie_reviews.movie_id
-        WHERE movie_reviews.user_id = ?
+        SELECT 
+            mr.movie_id,
+            m.title,
+            mr.rating,
+            mr.review,
+            mr.created_at,
+            GROUP_CONCAT(g.name SEPARATOR ', ') AS genres
+        FROM 
+            movie_reviews mr
+        JOIN 
+            movies m ON m.id = mr.movie_id
+        LEFT JOIN 
+            movie_genres mg ON mg.movie_id = mr.movie_id
+        LEFT JOIN 
+            genres g ON g.id = mg.genre_id
+        WHERE 
+            mr.user_id = ?
+        GROUP BY 
+            mr.movie_id, m.title, mr.rating, mr.review, mr.created_at
     `;
 
     connection.query(sql, [user_Id], (err, results) => {
@@ -279,7 +294,7 @@ router.get('/watchlist', authenticateToken, (req, res) => {
     const user_Id = req.user.user_id;
 
     connection.query(
-        "SELECT w.movie_id, m.title, m.release_year, m.director, w.watched FROM watch_later w JOIN movies m ON w.movie_id = m.id WHERE w.user_id = ?",
+        "SELECT w.movie_id, m.title, m.release_year, m.director, m.poster_url, w.watched FROM watch_later w JOIN movies m ON w.movie_id = m.id WHERE w.user_id = ?",
         [user_Id],
         (err, results) => {
             if (err) return res.status(500).json({ message: 'Error fetching watchlist', error: err });
