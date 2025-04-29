@@ -71,14 +71,37 @@ ol li {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.reviews-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
 .review-item {
-  background-color: #f7f7f7;
-  padding: 10px 15px;
+  background: #e6e5e5;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
   border-radius: 8px;
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
-  color: #333;
-  font-size: 15px;
+}
+
+.review-item div {
+  margin-bottom: 0.5rem;
+}
+
+.review-item strong {
+  color: #4a0505;
+  margin-right: 0.5rem;
+}
+
+.no-reviews {
+  background: #edeaea;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 8px;
+  color: #0e0e0e;
+  font-style: italic;
+  margin: 1rem 0;
+  border: 1px dashed #333;
 }
 
 @media (max-width: 768px) {
