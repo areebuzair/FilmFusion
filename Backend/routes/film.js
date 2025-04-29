@@ -217,7 +217,7 @@ router.post('/watchlist', authenticateToken, (req, res) => {
     }
 
     connection.query(
-        "INSERT INTO watchlist (user_id, movie_id, watched) VALUES (?, ?, False)",
+        "INSERT INTO watch_later (user_id, movie_id, watched) VALUES (?, ?, false)",
         [user_id, movie_id],
         (err, result) => {
             if (err) return res.status(500).json({ message: 'Error adding movie to watchlist', error: err });
@@ -231,7 +231,7 @@ router.get('/watchlist', authenticateToken, (req, res) => {
     const user_Id = req.user.user_id;
 
     connection.query(
-        "SELECT w.movie_id, m.title, m.release_year, m.director, w.watched FROM watchlist w JOIN movies m ON w.movie_id = m.id WHERE w.user_id = ?",
+        "SELECT w.movie_id, m.title, m.release_year, m.director, w.watched FROM watch_later w JOIN movies m ON w.movie_id = m.id WHERE w.user_id = ?",
         [user_Id],
         (err, results) => {
             if (err) return res.status(500).json({ message: 'Error fetching watchlist', error: err });
@@ -251,7 +251,7 @@ router.put('/watchlist/:movie_id', authenticateToken, (req, res) => {
     }
 
     connection.query(
-        "UPDATE watchlist SET watched = ? WHERE user_id = ? AND movie_id = ?",
+        "UPDATE watch_later SET watched = ? WHERE user_id = ? AND movie_id = ?",
         [watched, user_id, movie_id],
         (err, result) => {
             if (err) return res.status(500).json({ message: 'Error updating watchlist', error: err });
@@ -259,6 +259,21 @@ router.put('/watchlist/:movie_id', authenticateToken, (req, res) => {
         }
     );
 });
+
+//update to delete a movie from the watchlist
+router.delete('/watchlist/:movie_id', authenticateToken, (req, res) => {
+    const { movie_id } = req.params;
+    const { user_id } = req.user;
+
+    connection.query(
+        "DELETE FROM watch_later WHERE user_id = ? AND movie_id = ?",
+        [user_id, movie_id],
+        (err, result) => {
+            if (err) return res.status(500).json({ message: 'Error deleting movie from watchlist', error: err });
+            res.json({ message: 'Movie deleted from watchlist successfully' });
+        }
+    );
+});  //first deleting endpoint that we created in this project
 
 //module to export movie details  
 router.get('/movies/:id', (req, res) => {
