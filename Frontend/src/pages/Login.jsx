@@ -4,6 +4,7 @@ import { useAuth } from "../provider/authProvider";
 import { useState } from "react";
 import axios from "axios";
 import "./Login.css"; // Import the CSS for styling
+import Header from "../components/Header";
 
 const Login = () => {
   const { setToken } = useAuth();
@@ -33,40 +34,46 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-form">
-        <h2 className="login-title">Login</h2>
-        {error && <p className="error-message">{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              value={useremail}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="login-btn">
-            Login
-          </button>
-        </form>
-        <p className="signup-link">
-          Don't have an account? <a href="/signup">Sign Up</a>
-        </p>
+    <>
+      <div className="Header">
+        {" "}
+        <Header />{" "}
       </div>
-    </div>
+      <div className="login-container">
+        <div className="login-form">
+          <h2 className="login-title">Login</h2>
+          {error && <p className="error-message">{error}</p>}
+          <form onSubmit={handleSubmit}>
+            <div className="input-group">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                value={useremail}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="login-btn">
+              Login
+            </button>
+          </form>
+          <p className="signup-link">
+            Don't have an account? <a href="/signup">Sign Up</a>
+          </p>
+        </div>
+      </div>
+    </>
   );
 };
 

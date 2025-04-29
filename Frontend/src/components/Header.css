@@ -1,59 +1,92 @@
 /* src/components/Header.css */
 
 .header {
-  background-color: #222;
+  background-color: #1a1a1a;
   color: white;
-  padding: 15px 0;
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 1rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo a {
-  color: #fff;
-  font-size: 24px;
+  color: #ffffff;
+  font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo a:hover {
+  color: #f0c14b;
 }
 
 .nav-links ul {
-  list-style: none;
   display: flex;
-  gap: 20px;
+  list-style: none;
   margin: 0;
   padding: 0;
+  gap: 1.5rem;
 }
 
-.nav-links li a {
-  color: white;
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #ffffff;
   text-decoration: none;
-  font-size: 16px;
-  transition: color 0.3s;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
 }
 
-.nav-links li a:hover {
-  color: #f39c12; /* a nice orange color on hover */
+.nav-links a:hover {
+  color: #f0c14b;
 }
 
 .logout-button {
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 16px;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s, color 0.3s;
+  padding: 0.5rem 0;
+  font-family: inherit;
+  transition: color 0.3s ease;
 }
 
 .logout-button:hover {
-  background: #f39c12;
-  color: #222;
-  border-color: #f39c12;
+  color: #f0c14b;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .logo {
+    margin-bottom: 1rem;
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
 }

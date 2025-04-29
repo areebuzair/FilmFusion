@@ -2,13 +2,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Login from "../pages/Login";
-import { Register } from "../pages/SignUp/register";
+import { Register } from "../pages/register";
 import Logout from "../pages/Logout";
-import Header from '../components/Header';
-import Dashboard from '../components/Dashboard';
-import MovieList from '../components/MovieList';
+import Header from "../components/Header";
+import Dashboard from "../components/Dashboard";
+import MovieList from "../components/MovieList";
 import Home from "../components/Home";
-
 
 import Test from "../components/test";
 
@@ -43,14 +42,12 @@ const Routes = () => {
         },
         {
           path: "/logout",
-          element: <Logout/>,
+          element: <Logout />,
         },
         {
           path: "/dashboard",
-          element: <Dashboard />
+          element: <Dashboard />,
         },
-
-      
       ],
     },
   ];
@@ -63,11 +60,11 @@ const Routes = () => {
     },
     {
       path: "/login",
-      element: <Login/>,
+      element: <Login />,
     },
     {
       path: "/signup",
-      element: <Register/>,
+      element: <Register />,
     },
   ];
 
