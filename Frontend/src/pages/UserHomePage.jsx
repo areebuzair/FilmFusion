@@ -41,6 +41,7 @@ export default function UserHomePage() {
             genreMap[trimmed] = (genreMap[trimmed] || 0) + 1;
           });
         });
+        delete genreMap.Uncategorized;
         setGenreCounts(genreMap);
 
         // Rating Distribution

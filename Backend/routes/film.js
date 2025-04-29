@@ -237,7 +237,7 @@ router.get('/movies/myreviews', authenticateToken, (req, res) => {
     });
 });
 
- 
+
 // Endpoint to Update the rating and review for a movie (Requires authentication )
 router.put('/movies/:id/rate-review', authenticateToken, (req, res) => {
     const movieId = req.params.id;
@@ -264,7 +264,7 @@ router.put('/movies/:id/rate-review', authenticateToken, (req, res) => {
 
 
 
-    // =========================
+// =========================
 // Watchlist Endpoints
 // =========================
 
@@ -373,10 +373,10 @@ router.get('/movies/:id', (req, res) => {
         const reviews = results[2].map(review => {
             const reviewer = results[4].find(r => r.id === review.id);
             return {
-              ...review,
-              user_name: reviewer ? reviewer.user_name : null
+                ...review,
+                user_name: reviewer ? reviewer.user_name : null
             };
-          });
+        });
 
         res.json({
             movie: results[0][0],          // First query result: movie
@@ -387,7 +387,19 @@ router.get('/movies/:id', (req, res) => {
     });
 });
 
-
+// Actor information
+router.get('/actor/:id', (req, res) => {
+    const actor_id = req.params.id;
+    const sql = `SELECT * 
+FROM actors, actor_movie_log, movies 
+where actors.id = actor_movie_log.actor_id 
+and movies.id = actor_movie_log.movie_id
+and actors.id = ?;`;
+    connection.query(sql, [actor_id], (err, results) => {
+        if (err) return res.status(500).json({ message: 'Error fetching actor information', error: err });
+        res.json(results);
+    });
+});
 
 
 
