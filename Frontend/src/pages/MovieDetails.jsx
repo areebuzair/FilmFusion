@@ -6,15 +6,20 @@ import axios from "axios";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 export default function MovieDetails() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [movie, setMovie] = useState();
-  const { token } = useAuth();
-  const navigate = useNavigate();
-  useEffect(() => {
-    let id = searchParams.get("id");
-    if (!id) {
-      navigate("/");
-    }
+    const [searchParams] = useSearchParams();
+    const [movie, setMovie] = useState(null);
+    const [inWatchlist, setInWatchlist] = useState(false);
+    const [watchlistMessage, setWatchlistMessage] = useState("");
+    const { token } = useAuth();
+    const navigate = useNavigate();
+
+    const movieId = searchParams.get("id");
+
+    useEffect(() => {
+        if (!movieId) {
+            navigate("/");
+            return;
+        }
 
         const fetchMovie = async () => {
             try {
@@ -73,76 +78,88 @@ export default function MovieDetails() {
             setWatchlistMessage("⚠️ Error updating watchlist.");
         }
     };
-
     return (
         <>
+            <div className="Header">
+                {" "}
+                <Header />{" "}
+            </div>
             {movie && (
-                <div>
-                    <h2>Movie Details</h2>
-                    <img
-                        src={movie.movie.poster_url}
-                        alt={movie.movie.title}
-                        className="movie-poster"
-                    />
-                    <div className="movie-info">
-                        <h3>{movie.movie.title} ({movie.movie.release_year})</h3>
-                        <p><strong>Director:</strong> {movie.movie.director}</p>
+                <div className="movie-details-container">
+                    <div className="poster-container">
+                        <img src={movie.movie.poster_url} alt={movie.movie.title} />
+                    </div>
 
+                    <div className="details-content">
+                        <h2>
+                            {movie.movie.title} ({movie.movie.release_year})
+                        </h2>
+                        <p>
+                            <strong>Director:</strong> {movie.movie.director}
+                        </p>
                         <div className="movie-rating">
-                            <span className="star">⭐</span>
+                            <span>⭐</span>
                             <span>{movie.movie.rating || "N/A"}</span>
                         </div>
 
-                        {token && (
-                            <div style={{ margin: "10px 0" }}>
-                                <button
-                                    onClick={toggleWatchlist}
-                                    style={{
-                                        padding: "6px 12px",
-                                        backgroundColor: inWatchlist ? "#dc3545" : "#28a745",
-                                        color: "white",
-                                        border: "none",
-                                        borderRadius: "4px",
-                                        cursor: "pointer",
-                                        fontSize: "14px"
-                                    }}
-                                >
-                                    {inWatchlist ? "➖ Remove from Watchlist" : "➕ Add to Watchlist"}
-                                </button>
-                                {watchlistMessage && (
-                                    <div style={{ marginTop: "6px", fontSize: "13px", color: "gray" }}>
-                                        {watchlistMessage}
+                        <div className="section-title">Actors</div>
+                        <ol>
+                            {movie.actors.map((actor) => (
+                                <li key={actor.id}>
+                                    {actor.first_name} {actor.last_name}
+                                </li>
+                            ))}
+                        </ol>
+
+                        <div className="section-title">Genres</div>
+                        <ol>
+                            {movie.genres.map((genre) => (
+                                <li key={genre}>{genre}</li>
+                            ))}
+                        </ol>
+
+                        <div className="section-title">Reviews</div>
+                        {token && <GiveRating movie_id={movie.movie.id} />}
+                        <ol>
+                            {movie.reviews.map((review) => (
+                                <li key={review.id} className="review-item">
+                                    <div>
+                                        <strong>User Id:</strong> {review.user_id}
                                     </div>
-                                )}
-                            </div>
-                        )}
+                                    <div>
+                                        <strong>Rating:</strong> {review.rating}
+                                    </div>
+                                    <div>
+                                        <strong>Review:</strong> {review.review}
+                                    </div>
+                                </li>
+                            ))}
+                        </ol>
                     </div>
-
-                    <h3>Actors</h3>
-                    <ol>
-                        {movie.actors.map((actor) => (
-                            <li key={actor.id}>{actor.first_name + ' ' + actor.last_name}</li>
-                        ))}
-                    </ol>
-
-                    <h3>Genres</h3>
-                    <ol>
-                        {movie.genres.map((genre) => (
-                            <li key={genre}>{genre}</li>
-                        ))}
-                    </ol>
-
-                    <h3>Reviews</h3>
-                    {token && <GiveRating movie_id={movie.movie.id} />}
-                    <ol>
-                        {movie.reviews.map((review) => (
-                            <li key={review.id}>
-                                User Id: {review.user_id} <br />
-                                Rating: {review.rating} <br />
-                                Review: {review.review}
-                            </li>
-                        ))}
-                    </ol>
+                    
+                    {token && (
+                        <div style={{ margin: "10px 0" }}>
+                            <button
+                                onClick={toggleWatchlist}
+                                style={{
+                                    padding: "6px 12px",
+                                    backgroundColor: inWatchlist ? "#dc3545" : "#28a745",
+                                    color: "white",
+                                    border: "none",
+                                    borderRadius: "4px",
+                                    cursor: "pointer",
+                                    fontSize: "14px"
+                                }}
+                            >
+                                {inWatchlist ? "➖ Remove from Watchlist" : "➕ Add to Watchlist"}
+                            </button>
+                            {watchlistMessage && (
+                                <div style={{ marginTop: "6px", fontSize: "13px", color: "gray" }}>
+                                    {watchlistMessage}
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             )}
         </>
