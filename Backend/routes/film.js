@@ -201,23 +201,50 @@ router.get('/movies/:id/my-rate-review', authenticateToken, (req, res) => {
         }
     );
 });
+ 
+// Endpoint to Update the rating and review for a movie (Requires authentication )
+router.put('/movies/:id/rate-review', authenticateToken, (req, res) => {
+    const movieId = req.params.id;
+    const { rating, review } = req.body;
+    const user_Id = req.user.user_id;
+
+    if (!rating || rating < 1 || rating > 5) {
+        return res.status(400).json({ message: 'Rating must be between 1 and 5' });
+    }
+
+    connection.query(
+        "UPDATE movie_reviews SET rating = ?, review = ? WHERE movie_id = ? AND user_id = ?",
+        [rating, review || "", movieId, user_Id],
+        (err, result) => {
+            if (err) return res.status(500).json({ message: 'Error updating rating and review', error: err });
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: 'No rating or review found to update for this movie by the user' });
+            }
+            res.json({ message: 'Rating and review updated successfully' });
+        }
+    );
+});
 
 
-// =========================
+
+
+    // =========================
 // Watchlist Endpoints
 // =========================
 
 // Add a movie to the user's watchlist (Requires authentication)
-router.post('/watchlist', authenticateToken, (req, res) => {
-    const { movie_id } = req.body;
+router.post('/movies/:movie_id/watchlist', authenticateToken, (req, res) => {
+    const { movie_id } = req.params;
     const {user_id} = req.user;
 
     if (!user_id || !movie_id) {
         return res.status(400).json({ message: 'User ID and Movie ID are required' });
     }
 
+    console.log(movie_id)
+
     connection.query(
-        "INSERT INTO watchlist (user_id, movie_id, watched) VALUES (?, ?, False)",
+        "INSERT INTO watch_later (user_id, movie_id, watched) VALUES (?, ?, false)",
         [user_id, movie_id],
         (err, result) => {
             if (err) return res.status(500).json({ message: 'Error adding movie to watchlist', error: err });
@@ -231,7 +258,7 @@ router.get('/watchlist', authenticateToken, (req, res) => {
     const user_Id = req.user.user_id;
 
     connection.query(
-        "SELECT w.movie_id, m.title, m.release_year, m.director, w.watched FROM watchlist w JOIN movies m ON w.movie_id = m.id WHERE w.user_id = ?",
+        "SELECT w.movie_id, m.title, m.release_year, m.director, w.watched FROM watch_later w JOIN movies m ON w.movie_id = m.id WHERE w.user_id = ?",
         [user_Id],
         (err, results) => {
             if (err) return res.status(500).json({ message: 'Error fetching watchlist', error: err });
@@ -241,7 +268,7 @@ router.get('/watchlist', authenticateToken, (req, res) => {
 });
 
 // Update the watched status of a movie in the user's watchlist (Requires authentication)
-router.put('/watchlist/:movie_id', authenticateToken, (req, res) => {
+router.put('/movies/watchlist/:movie_id', authenticateToken, (req, res) => {
     const { movie_id } = req.params;
     const { user_id } = req.user;
     const { watched } = req.body;
@@ -251,7 +278,7 @@ router.put('/watchlist/:movie_id', authenticateToken, (req, res) => {
     }
 
     connection.query(
-        "UPDATE watchlist SET watched = ? WHERE user_id = ? AND movie_id = ?",
+        "UPDATE watch_later SET watched = ? WHERE user_id = ? AND movie_id = ?",
         [watched, user_id, movie_id],
         (err, result) => {
             if (err) return res.status(500).json({ message: 'Error updating watchlist', error: err });
@@ -259,6 +286,21 @@ router.put('/watchlist/:movie_id', authenticateToken, (req, res) => {
         }
     );
 });
+
+//update to delete a movie from the watchlist
+router.delete('/movies/:movie_id/watchlist', authenticateToken, (req, res) => {
+    const { movie_id } = req.params;
+    const { user_id } = req.user;
+
+    connection.query(
+        "DELETE FROM watch_later WHERE user_id = ? AND movie_id = ?",
+        [user_id, movie_id],
+        (err, result) => {
+            if (err) return res.status(500).json({ message: 'Error deleting movie from watchlist', error: err });
+            res.json({ message: 'Movie deleted from watchlist successfully' });
+        }
+    );
+});  //first deleting endpoint that we created in this project
 
 //module to export movie details  
 router.get('/movies/:id', (req, res) => {

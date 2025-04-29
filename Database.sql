@@ -320,7 +320,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
----need to think about watchlist table structure
+-- need to think about watchlist table structure
 -- -----------------------------------------------------
 -- Table `movies_db`.`watch_later`
 -- -----------------------------------------------------
