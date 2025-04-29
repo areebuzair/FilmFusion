@@ -1,9 +1,11 @@
-import React from 'react'
-import GiveRating from '../components/GiveRating'
-import { useAuth } from '../provider/authProvider'
+import React from "react";
+import GiveRating from "../components/GiveRating";
+import { useAuth } from "../provider/authProvider";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import "./MovieDetails.css";
+import Header from "../components/Header";
 
 export default function MovieDetails() {
     const [searchParams] = useSearchParams();
