@@ -354,3 +354,34 @@ END$$
 
 DELIMITER ;
 
+DELIMITER $$
+
+CREATE TRIGGER update_movie_rating_after_insert
+AFTER INSERT ON movie_reviews
+FOR EACH ROW
+BEGIN
+  UPDATE movies
+  SET rating = (
+    SELECT AVG(rating)
+    FROM movie_reviews
+    WHERE movie_id = NEW.movie_id
+  )
+  WHERE id = NEW.movie_id;
+END$$
+
+CREATE TRIGGER update_movie_rating_after_update
+AFTER UPDATE ON movie_reviews
+FOR EACH ROW
+BEGIN
+  UPDATE movies
+  SET rating = (
+    SELECT AVG(rating)
+    FROM movie_reviews
+    WHERE movie_id = NEW.movie_id
+  )
+  WHERE id = NEW.movie_id;
+END$$
+
+DELIMITER ;
+
+
