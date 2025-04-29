@@ -126,7 +126,7 @@ export default function GiveRating({ movie_id }) {
 
         <button
           type="submit"
-          disabled={loading || reviewText.length > 250}
+          disabled={loading || reviewText.length > 250 || isUpdating}
           style={{
             marginTop: "8px",
             padding: "6px 12px",
