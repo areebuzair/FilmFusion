@@ -1,0 +1,8 @@
+/* Home.css */
+.home-container {
+  /* Cool movie background */
+  background-image: url("https://source.unsplash.com/random/1920x1080/?cinema,movie");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}

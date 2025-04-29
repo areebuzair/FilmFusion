@@ -1,5 +1,7 @@
+// src/components/Register.jsx
+
 import React, { useState } from "react";
-import "./SignUp_NGO.css";
+import "./SignUp_NGO.css"; // New Signup.css
 import { FaRegUser, FaLock, FaEnvelope } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../provider/authProvider";
@@ -13,84 +15,107 @@ export const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = (_token) => {
     setToken(_token);
     navigate("/", { replace: true });
   };
 
-  const HandleRegSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password != confirmPassword) {
-      setResponseMessage("Passwords do not match")
+    if (password !== confirmPassword) {
+      setResponseMessage("Passwords do not match");
       return;
     }
 
     const formData = { username, useremail, password };
-    console.log(formData)
-
 
     try {
-      const response = await axios.post("http://localhost:4500/user/signup", formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      console.log("Full response:", response);
-      console.log("Registration successful:", response?.data?.message);
+      const response = await axios.post(
+        "http://localhost:4500/user/signup",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response?.data?.token) {
         handleLogin(response.data.token);
       } else {
         console.warn("Token not received in response.");
       }
-
     } catch (err) {
-      console.error("Registration failed:", err?.response?.data || err.message || err);
-      console.log(err)
-      setResponseMessage(err?.response?.data?.error)
+      setResponseMessage(err?.response?.data?.error || "Registration failed.");
     }
-
-  }
+  };
 
   return (
-    <div className="signup-wrapper">
-      {
-        responseMessage
-        &&
-        <h1>{responseMessage}</h1>
-      }
-      <form onSubmit={(e) => HandleRegSubmit(e)}>
-        <h1>Sign Up</h1>
-        <div className="input-box">
-          <input type="text" placeholder="Username" required value={username} onInput={(e) => { setUsername(e.target.value) }} />
-          <FaRegUser className="icon" />
-        </div>
-        <div className="input-box email-phone">
-          <input type="email" placeholder="Email" required value={useremail} onInput={(e) => { setUseremail(e.target.value) }} />
-        </div>
-        <div className="input-box">
-          <input type="password" placeholder="Password" required value={password} onInput={(e) => { setPassword(e.target.value) }} />
-          <FaLock className="icon" />
-        </div>
-        <div className="input-box">
-          <input type="password" placeholder="Confirm Password" required value={confirmPassword} onInput={(e) => { setConfirmPassword(e.target.value) }} />
-          <FaLock className="icon" />
+    <div className="auth-container">
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
+
+        {responseMessage && (
+          <div className="error-message">{responseMessage}</div>
+        )}
+
+        <div className="input-group">
+          <FaRegUser className="input-icon" />
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
         </div>
 
-
-        <button type="submit">Sign Up</button>
-        <div className="register-link">
-          <p>
-            Already have an account?{" "}
-            <button onClick={() => navigate("/login")} style={{ marginLeft: "5px" }}>
-              Login
-            </button>
-          </p>
+        <div className="input-group">
+          <FaEnvelope className="input-icon" />
+          <input
+            type="email"
+            placeholder="Email"
+            value={useremail}
+            onChange={(e) => setUseremail(e.target.value)}
+            required
+          />
         </div>
+
+        <div className="input-group">
+          <FaLock className="input-icon" />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="input-group">
+          <FaLock className="input-icon" />
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <button type="submit" className="auth-button">
+          Sign Up
+        </button>
+
+        <p className="auth-switch">
+          Already have an account?{" "}
+          <span onClick={() => navigate("/login")} className="auth-link">
+            Login
+          </span>
+        </p>
       </form>
     </div>
   );

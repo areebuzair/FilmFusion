@@ -1,13 +1,13 @@
-// Movie List component
-// src/components/MovieList.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../provider/authProvider";
 import GiveRating from "./GiveRating";
+import "./MovieList.css"; // import the CSS file
 
 function MovieList() {
   const [movies, setMovies] = useState([]);
   const { token } = useAuth();
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -21,23 +21,39 @@ function MovieList() {
   }, []);
 
   return (
-    <div>
-      <h2>Movies List</h2>
+    <div className="movie-list">
+      <h2 className="title">Movies List</h2>
       {movies.length === 0 ? (
-        <p>No movies available.</p>
+        <p className="no-movies">No movies available.</p>
       ) : (
-        <ul>
+        <div className="movies-grid">
           {movies.map((movie) => (
-            <li key={movie.id}>
-              <img src={movie.poster_url} alt={movie.title} />
-              <br />
-              <strong>{movie.title}</strong> ({movie.release_year}) <br />
-              Directed by {movie.director} <br />
-              Rating: {movie.rating || "N/A"} <br />
-              {token && <GiveRating movie_id={movie.id} />}
-            </li>
+            <div key={movie.id} className="movie-card">
+              <img
+                src={movie.poster_url}
+                alt={movie.title}
+                className="movie-poster"
+              />
+              <div className="movie-info">
+                <h3>
+                  {movie.title} ({movie.release_year})
+                </h3>
+                <p>
+                  <strong>Director:</strong> {movie.director}
+                </p>
+
+                {/* Rating Section */}
+                <div className="movie-rating">
+                  <span className="star">⭐</span>
+                  <span>{movie.rating || "N/A"}</span>
+                </div>
+
+                {/* Conditionally render GiveRating component */}
+                {token && <GiveRating movie_id={movie.id} />}
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

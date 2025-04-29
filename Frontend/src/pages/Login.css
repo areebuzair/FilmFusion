@@ -1,6 +1,6 @@
-/* src/components/SignUp_NGO.css */
+/* src/components/Login.css */
 
-.auth-container {
+.login-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,17 +9,16 @@
   padding: 20px;
 }
 
-.auth-form {
+.login-form {
   background: white;
   padding: 40px 30px;
   border-radius: 10px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   width: 100%;
-  max-width: 400px;
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  max-width: 380px;
 }
 
-.auth-form h2 {
+.login-title {
   font-size: 30px;
   text-align: center;
   margin-bottom: 25px;
@@ -28,25 +27,30 @@
 }
 
 .input-group {
-  position: relative;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #666;
 }
 
 .input-group input {
-  width: 100%; /* Ensure the input is full width */
-  padding: 12px 15px 12px 40px;
+  padding: 12px 15px;
   font-size: 15px;
   border: 1px solid #ccc;
   border-radius: 6px;
   outline: none;
-  background-color: white; /* White input background */
-  color: black; /* Black text color */
-  transition: border 0.3s, box-shadow 0.3s;
-  box-sizing: border-box; /* Make sure padding is included in the width */
+  transition: all 0.3s ease;
+  background-color: white; /* WHITE background */
+  color: black; /* BLACK text */
 }
 
 .input-group input::placeholder {
-  color: #aaa;
+  color: #aaa; /* Optional: lighter placeholder */
 }
 
 .input-group input:focus {
@@ -54,16 +58,7 @@
   box-shadow: 0 0 5px rgba(108, 99, 255, 0.4);
 }
 
-.input-icon {
-  position: absolute;
-  top: 50%;
-  left: 12px;
-  transform: translateY(-50%);
-  color: #999;
-  font-size: 18px;
-}
-
-.auth-button {
+.login-btn {
   width: 100%;
   background-color: #6c63ff;
   color: white;
@@ -77,7 +72,7 @@
   transition: background-color 0.3s ease;
 }
 
-.auth-button:hover {
+.login-btn:hover {
   background-color: #5848c2;
 }
 
@@ -91,20 +86,19 @@
   text-align: center;
 }
 
-.auth-switch {
+.signup-link {
   margin-top: 20px;
   font-size: 14px;
   text-align: center;
   color: #555;
 }
 
-.auth-link {
+.signup-link a {
   color: #6c63ff;
-  cursor: pointer;
-  font-weight: 500;
   text-decoration: none;
+  font-weight: 500;
 }
 
-.auth-link:hover {
+.signup-link a:hover {
   text-decoration: underline;
 }
