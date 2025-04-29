@@ -32,16 +32,7 @@ export default function MovieDetails() {
                 console.error("Error fetching movie details", error);
             }
         };
-    const fetchMovie = async () => {
-      try {
-        const res = await axios.get(
-          `http://localhost:4500/film/movies/${movieId}`
-        );
-        setMovie(res.data);
-      } catch (error) {
-        console.error("Error fetching movie details", error);
-      }
-    };
+
 
     const fetchWatchlistStatus = async () => {
       try {
