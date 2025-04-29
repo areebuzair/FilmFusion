@@ -97,22 +97,21 @@ export default function GiveRating({ movie_id }) {
         ))}
       </div>
 
-      {showReviewForm && (
-        <form onSubmit={handleReviewSubmit} style={{ marginTop: "10px" }}>
-          <textarea
-            placeholder="Write your review..."
-            value={reviewText}
-            onChange={(e) => {
-              setReviewText(e.target.value);
-              if (e.target.value.length > 250) {
-                setError("Review must be under 250 characters.");
-              } else {
-                setError("");
-              }
-            }}
-            rows="4"
-            style={{ width: "100%", padding: "8px" }}
-          />
+      <form onSubmit={handleReviewSubmit} style={{ marginTop: "10px" }}>
+        <textarea
+          placeholder="Write your review..."
+          value={reviewText}
+          onChange={(e) => {
+            setReviewText(e.target.value);
+            if (e.target.value.length > 250) {
+              setError("Review must be under 250 characters.");
+            } else {
+              setError("");
+            }
+          }}
+          rows="4"
+          style={{ width: "100%", padding: "8px" }}
+        />
 
         <div style={{ fontSize: "12px", color: "gray", marginTop: "4px" }}>
           Review must be under 250 characters. ({reviewText.length}/250)
