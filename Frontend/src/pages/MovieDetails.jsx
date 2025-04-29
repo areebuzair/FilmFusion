@@ -27,6 +27,7 @@ export default function MovieDetails() {
             try {
                 const res = await axios.get(`http://localhost:4500/film/movies/${movieId}`);
                 setMovie(res.data);
+                console.log(res.data)
             } catch (error) {
                 console.error("Error fetching movie details", error);
             }
@@ -129,7 +130,7 @@ export default function MovieDetails() {
                             {movie.reviews.map((review) => (
                                 <li key={review.id} className="review-item">
                                     <div>
-                                        <strong>User Id:</strong> {review.user_id}
+                                        <strong>User Name:</strong> {review.user_name}
                                     </div>
                                     <div>
                                         <strong>Rating:</strong> {review.rating}
