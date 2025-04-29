@@ -201,9 +201,34 @@ router.get('/movies/:id/my-rate-review', authenticateToken, (req, res) => {
         }
     );
 });
+ 
+// Endpoint to Update the rating and review for a movie (Requires authentication )
+router.put('/movies/:id/rate-review', authenticateToken, (req, res) => {
+    const movieId = req.params.id;
+    const { rating, review } = req.body;
+    const user_Id = req.user.user_id;
+
+    if (!rating || rating < 1 || rating > 5) {
+        return res.status(400).json({ message: 'Rating must be between 1 and 5' });
+    }
+
+    connection.query(
+        "UPDATE movie_reviews SET rating = ?, review = ? WHERE movie_id = ? AND user_id = ?",
+        [rating, review || "", movieId, user_Id],
+        (err, result) => {
+            if (err) return res.status(500).json({ message: 'Error updating rating and review', error: err });
+            if (result.affectedRows === 0) {
+                return res.status(404).json({ message: 'No rating or review found to update for this movie by the user' });
+            }
+            res.json({ message: 'Rating and review updated successfully' });
+        }
+    );
+});
 
 
-// =========================
+
+
+    // =========================
 // Watchlist Endpoints
 // =========================
 
