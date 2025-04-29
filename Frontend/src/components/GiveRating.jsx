@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./GiveRating.css";
 
 export default function GiveRating({ movie_id }) {
   const [stars, setStars] = useState(0);
@@ -83,63 +84,73 @@ export default function GiveRating({ movie_id }) {
   if (!initialLoadDone) return <p>Loading your rating...</p>;
 
   return (
-    <div className="movie-rating">
-      <div className="stars" style={{ marginBottom: "10px" }}>
-        {[1, 2, 3, 4, 5].map((star) => (
-          <span
-            key={star}
-            className={`star ${star <= stars ? "selected" : ""}`}
-            onClick={() => handleStarClick(star)}
-            style={{ cursor: "pointer", fontSize: "24px", color: star <= stars ? "gold" : "gray" }}
-          >
-            ★
-          </span>
-        ))}
-      </div>
-
-      <form onSubmit={handleReviewSubmit} style={{ marginTop: "10px" }}>
-        <textarea
-          placeholder="Write your review..."
-          value={reviewText}
-          onChange={(e) => {
-            setReviewText(e.target.value);
-            if (e.target.value.length > 250) {
-              setError("Review must be under 250 characters.");
-            } else {
-              setError("");
-            }
-          }}
-          rows="4"
-          style={{ width: "100%", padding: "8px" }}
-          required
-        />
-
-        <div style={{ fontSize: "12px", color: "gray", marginTop: "4px" }}>
-          Review must be under 250 characters. ({reviewText.length}/250)
+    <>
+      <div className="movie-rating">
+        <div className="stars">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <span
+              key={star}
+              className={`star ${star <= stars ? "selected" : ""}`}
+              onClick={() => handleStarClick(star)}
+              style={{
+                cursor: "pointer",
+                fontSize: "24px",
+                color: star <= stars ? "gold" : "gray",
+              }}
+            >
+              ★
+            </span>
+          ))}
         </div>
 
-        {error && (
-          <div style={{ color: "red", fontSize: "13px", marginTop: "5px" }}>
-            {error}
-          </div>
-        )}
+        <form onSubmit={handleReviewSubmit} style={{ marginTop: "10px" }}>
+          <textarea
+            placeholder="Write your review..."
+            value={reviewText}
+            onChange={(e) => {
+              setReviewText(e.target.value);
+              if (e.target.value.length > 250) {
+                setError("Review must be under 250 characters.");
+              } else {
+                setError("");
+              }
+            }}
+            rows="4"
+            style={{ padding: "8px" }}
+            required
+          />
 
-        <button
-          type="submit"
-          disabled={loading || reviewText.length > 250 || isUpdating}
-          style={{
-            marginTop: "8px",
-            padding: "6px 12px",
-            backgroundColor: loading ? "gray" : "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: loading ? "not-allowed" : "pointer",
-          }}
-        >
-          {loading ? "Posting..." : isUpdating ? "Update Review" : "Post Review"}
-        </button>
-      </form>
-    </div>
+          <div style={{ fontSize: "12px", color: "gray", marginTop: "4px" }}>
+            Review must be under 250 characters. ({reviewText.length}/250)
+          </div>
+
+          {error && (
+            <div style={{ color: "red", fontSize: "13px", marginTop: "5px" }}>
+              {error}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading || reviewText.length > 250 || isUpdating}
+            style={{
+              marginTop: "8px",
+              padding: "6px 12px",
+              backgroundColor: loading ? "gray" : "#007bff",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: loading ? "not-allowed" : "pointer",
+            }}
+          >
+            {loading
+              ? "Posting..."
+              : isUpdating
+              ? "Update Review"
+              : "Post Review"}
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
