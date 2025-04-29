@@ -111,6 +111,7 @@ export default function GiveRating({ movie_id }) {
           }}
           rows="4"
           style={{ width: "100%", padding: "8px" }}
+          required
         />
 
         <div style={{ fontSize: "12px", color: "gray", marginTop: "4px" }}>
