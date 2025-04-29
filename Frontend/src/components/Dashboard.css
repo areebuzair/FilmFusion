@@ -1,14 +1,14 @@
 /* Dashboard.css */
 .dashboard-container {
-  max-width: 1500px;
-  margin: 0;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 1rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #000000;
 }
 
 .dashboard-title {
-  color: #e8e8e8;
+  color: #000000;
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
@@ -30,29 +30,58 @@
 }
 
 .dashboard-content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .dashboard-section {
   background: #ffffff;
   border-radius: 12px;
-  padding: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  overflow: hidden;
 }
 
-.dashboard-section:hover {
-  transform: translateY(-5px);
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  cursor: pointer;
+  background-color: #f8f9fa;
+  transition: background-color 0.2s;
+}
+
+.section-header:hover {
+  background-color: #e9ecef;
 }
 
 .section-title {
   color: #000000;
   font-size: 1.5rem;
   font-weight: 600;
-  margin-bottom: 1.5rem;
-  text-align: center;
+  margin: 0;
+}
+
+.toggle-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s;
+}
+
+.section-header.collapsed .toggle-icon {
+  transform: rotate(-90deg);
+}
+
+.section-content {
+  max-height: 1200px;
+  overflow: auto;
+  transition: max-height 0.3s ease;
+  padding: 0 1.5rem;
+}
+
+.section-content.collapsed {
+  max-height: 0;
+  padding: 0 1.5rem;
 }
 
 /* Form styling */
@@ -60,6 +89,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  padding: 1.5rem 0;
 }
 
 .form-group {
@@ -69,7 +99,7 @@
 
 .dashboard-section label {
   color: #000000;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   margin-bottom: 8px;
 }
@@ -77,12 +107,12 @@
 .dashboard-section input,
 .dashboard-section select,
 .dashboard-section textarea {
-  padding: 10px 10px;
+  padding: 10px;
   font-size: 15px;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
   background-color: #ffffff;
-  color: #000000;
+  color: #c11a1a;
   width: 100%;
   transition: border-color 0.3s;
 }
@@ -95,40 +125,9 @@
   box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.1);
 }
 
-/* Checkbox styling */
-.checkbox-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.dashboard-section input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  margin-right: 10px;
-  accent-color: #6c63ff;
-}
-
-/* File input styling */
-.file-input-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.file-input-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 15px;
-  background: #f8fafc;
-  border: 1px dashed #cbd5e0;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
 /* Button styling */
 .dashboard-section button {
-  background-color: #6c63ff;
+  background-color: #2563eb; /* Blue-600 */
   color: white;
   padding: 12px;
   border: none;
@@ -141,7 +140,7 @@
 }
 
 .dashboard-section button:hover {
-  background-color: #5848c2;
+  background-color: #1d4ed8; /* Blue-700 */
 }
 
 /* Background styling */
@@ -154,18 +153,16 @@ body {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1024px) {
-  .dashboard-content {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 768px) {
-  .dashboard-content {
-    grid-template-columns: 1fr;
+  .dashboard-container {
+    padding: 1rem;
   }
 
-  .dashboard-container {
-    padding: 1.5rem;
+  .section-header {
+    padding: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
   }
 }
