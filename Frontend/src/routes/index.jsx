@@ -11,6 +11,7 @@ import Home from "../components/Home";
 import MovieDetails from "../pages/MovieDetails";
 import UserHomePage from "../pages/UserHomePage";
 import ActorProfile from "../pages/ActorProfile";
+import Recommendations from "../pages/Recommendations";
 
 import Test from "../components/test";
 
@@ -62,6 +63,10 @@ const Routes = () => {
         {
           path: "/user",
           element: <UserHomePage />
+        },
+        {
+          path: "/recommendations",
+          element: <Recommendations />
         }
       ],
     },
