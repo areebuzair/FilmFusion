@@ -5,6 +5,15 @@ import { useAuth } from '../provider/authProvider';
 import GiveRating from '../components/GiveRating';
 
 export default function MovieDetails() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [movie, setMovie] = useState();
+  const { token } = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    let id = searchParams.get("id");
+    if (!id) {
+      navigate("/");
+    }
     const [searchParams] = useSearchParams();
     const [movie, setMovie] = useState(null);
     const [inWatchlist, setInWatchlist] = useState(false);
