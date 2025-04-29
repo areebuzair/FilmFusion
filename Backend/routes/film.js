@@ -401,6 +401,16 @@ and actors.id = ?;`;
     });
 });
 
+//Get Movie by Genre
+router.get('/moviesbygenre/:genre', (req, res) => {
+    const genre = req.params.genre;
+    const sql = `SELECT * FROM movies, movie_genres, genres
+where movies.id = movie_id and genres.id = genre_id and genres.name = ?;`;
+    connection.query(sql, [genre], (err, results) => {
+        if (err) return res.status(500).json({ message: 'Error fetching genre information', error: err });
+        res.json(results);
+    });
+});
 
 
 

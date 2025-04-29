@@ -188,7 +188,7 @@ export default function UserHomePage() {
         <CollapsibleSection title="Genre Breakdown">
           <div className="uh-genres-grid">
             {Object.entries(genreCounts).map(([genre, count]) => (
-              <div key={genre} className="uh-genre-item">
+              <div key={genre} className="uh-genre-item" onClick={()=>{navigate(`/moviesbygenre?genre=${genre}`)}}>
                 <span className="uh-genre-name">{genre}</span>
                 <span className="uh-genre-count">{count}</span>
               </div>

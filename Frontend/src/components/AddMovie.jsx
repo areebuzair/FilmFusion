@@ -63,7 +63,7 @@ function AddMovie() {
           title,
           release_year: parseInt(releaseYear),
           director,
-          rating: rating ? parseFloat(rating) : null,
+          rating: null,
           genres: selectedGenres,
           poster_url: photoURL
         }
@@ -112,7 +112,7 @@ function AddMovie() {
             required
           />
         </div>
-        <div>
+        {/* <div>
           <label>Rating:</label>
           <input
             type="number"
@@ -120,7 +120,7 @@ function AddMovie() {
             value={rating}
             onChange={(e) => setRating(e.target.value)}
           />
-        </div>
+        </div> */}
         <div>
           <label>Poster:</label>
           <input
