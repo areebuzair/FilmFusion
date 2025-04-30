@@ -102,12 +102,12 @@ function Recommendations() {
             {recommendations.map((movie, index) => (
               <li className="recommendation-item" key={index}>
                 <div className="movie-title">
-                  <strong>{movie.title}</strong> ({movie.year || "N/A"})
+                  <strong>{movie.title}</strong>
                 </div>
                 <div className="movie-genres">{movie.genres}</div>
-                <div className="movie-rating">
+                {/* <div className="movie-rating">
                   Rating: {movie.rating?.toFixed(1) || "N/A"}
-                </div>
+                </div> */}
               </li>
             ))}
           </ul>
