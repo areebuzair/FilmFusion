@@ -5,10 +5,34 @@ import AddGenre from "./AddGenre";
 import LinkActorWithMovie from "./LinkActorWithMovie";
 import "./Dashboard.css";
 import Header from "./Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 function CollapsibleSection({ title, children, isInitiallyOpen = false }) {
   const [isCollapsed, setIsCollapsed] = useState(!isInitiallyOpen);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:4500/film/movies/myreviews`
+        );
+        const reviews = res.data;
+
+        // Average Rating
+        if (reviews.length < 5) {
+          navigate("/")
+        }
+      }
+      catch (err) {
+        console.log("Could not connect to server", err)
+        navigate("/")
+      }
+    }
+    fetchReviews()
+  }, [])
 
   return (
     <div className="dashboard-section">
