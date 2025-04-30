@@ -57,7 +57,7 @@ function Dashboard() {
         <Header />
       </div>
       <div className="dashboard-container">
-        <h2 className="dashboard-title">Admin Dashboard</h2>
+        <h2 className="dashboard-title" style={{color:'white'}}>Admin Dashboard</h2>
         <div className="dashboard-content">
           <CollapsibleSection title="Add Movie">
             <AddMovie />
