@@ -122,7 +122,9 @@ export default function GiveRating({ movie_id }) {
 
         <form onSubmit={handleReviewSubmit} style={{ marginTop: "10px" }}>
           <textarea
-            placeholder="Write your review..."
+          
+          placeholder={movie_id==217?"Remember the first rule of fight club":"Leave a review"}
+            
             value={reviewText}
             onChange={(e) => {
               setReviewText(e.target.value);
